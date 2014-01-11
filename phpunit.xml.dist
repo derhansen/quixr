@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit colors="true" bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite name="PHP BitTorrent Announcer">
+        <testsuite name="Quixr tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
