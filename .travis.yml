@@ -9,3 +9,7 @@ php:
 notifications:
   email:
     - derhansen@gmail.com
+
+before_script:
+    - curl -s http://getcomposer.org/installer | php
+    - php composer.phar install
