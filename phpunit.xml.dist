@@ -2,12 +2,17 @@
 <phpunit colors="true" bootstrap="tests/unit/bootstrap.php">
     <testsuites>
         <testsuite name="Quixr tests">
-            <directory>tests</directory>
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist addUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">PHP</directory>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./bin</directory>
+                <directory>./tests</directory>
+                <directory>./vendor</directory>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>
