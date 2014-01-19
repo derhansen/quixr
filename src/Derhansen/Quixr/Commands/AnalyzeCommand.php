@@ -30,8 +30,8 @@ class AnalyzeCommand extends Command {
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		/** @var \Derhansen\Quixr\Helper\LogfileHelper $helper */
-		//$helper = $this->getHelper('logfile');
-		$output->writeln('Do something here');
+		$helper = $this->getHelper('logfile');
+		$output->writeln('Do something here ' . $helper->dummy());
 	}
 
 }

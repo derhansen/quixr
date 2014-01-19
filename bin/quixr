@@ -9,7 +9,7 @@ use Symfony\Component\Console\Application;
 use Derhansen\Quixr\Helper\LogfileHelper;
 
 $app = new Application('Quixr', '0.0.0');
-//$app->getHelperSet()->set(new LogfileHelper());
+$app->getHelperSet()->set(new LogfileHelper());
 $app->addCommands(array(
 	new Derhansen\Quixr\Commands\AnalyzeCommand()
 ));

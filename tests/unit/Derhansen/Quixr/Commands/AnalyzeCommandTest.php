@@ -18,14 +18,14 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testExecute() {
 		$application = new Application();
-		//$application->getHelperSet()->set(new LogfileHelper());
+		$application->getHelperSet()->set(new LogfileHelper());
 		$application->add(new AnalyzeCommand());
 
 		$command = $application->find('analyze');
 		$commandTester = new CommandTester($command);
 		$commandTester->execute(array('command' => $command->getName()));
 
-		$this->assertRegExp('/^Do something here$/', $commandTester->getDisplay());
+		$this->assertRegExp('/^Do something here From Helper$/', $commandTester->getDisplay());
 	}
 
 }
