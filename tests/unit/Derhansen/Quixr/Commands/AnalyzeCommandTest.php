@@ -18,8 +18,8 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testExecute() {
 		$application = new Application();
-		$application->add(new AnalyzeCommand());
 		$application->getHelperSet()->set(new LogfileHelper());
+		$application->add(new AnalyzeCommand());
 
 		$command = $application->find('analyze');
 		$commandTester = new CommandTester($command);
