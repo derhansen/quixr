@@ -18,7 +18,7 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testExecute() {
 		$application = new Application();
-		$application->getHelperSet()->set(new LogfileHelper());
+		$application->getHelperSet()->set(new \Derhansen\Quixr\Helper\LogfileHelper());
 		$application->add(new AnalyzeCommand());
 
 		$command = $application->find('analyze');

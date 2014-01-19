@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\unit\Derhansen\Quixr\Commands;
+namespace tests\unit\Derhansen\Quixr\Helper;
 
 use \Derhansen\Quixr\Helper\LogfileHelper;
 
