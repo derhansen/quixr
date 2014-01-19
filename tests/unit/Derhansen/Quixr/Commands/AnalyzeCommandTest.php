@@ -8,6 +8,7 @@ use Derhansen\Quixr\Commands\AnalyzeCommand;
 use Derhansen\Quixr\Helper\LogfileHelper;
 
 require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../../../../src/Derhansen/Quixr/Helper/LogfileHelper.php';
 
 class TestCommandTest extends \PHPUnit_Framework_TestCase {
 
