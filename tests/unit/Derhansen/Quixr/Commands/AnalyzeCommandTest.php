@@ -1,10 +1,11 @@
 <?php
 
-namespace tests\Derhansen\Cli\Command;
+namespace tests\unit\Derhansen\Quixr\Commands;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Derhansen\Quixr\Commands\AnalyzeCommand;
+use Derhansen\Quixr\Helper\LogfileHelper;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
@@ -18,12 +19,13 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 	public function testExecute() {
 		$application = new Application();
 		$application->add(new AnalyzeCommand());
+		$application->getHelperSet()->set(new LogfileHelper());
 
 		$command = $application->find('analyze');
 		$commandTester = new CommandTester($command);
 		$commandTester->execute(array('command' => $command->getName()));
 
-		$this->assertRegExp('/Do something here/', $commandTester->getDisplay());
+		$this->assertRegExp('/^Do something here From Helper$/', $commandTester->getDisplay());
 	}
 
 }

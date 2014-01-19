@@ -6,8 +6,10 @@ set_time_limit(0);
 (@include_once __DIR__ . '/../vendor/autoload.php') || @include_once __DIR__ . '/../../../autoload.php';
 
 use Symfony\Component\Console\Application;
+use Derhansen\Quixr\Helper\LogfileHelper;
 
 $app = new Application('Quixr', '0.0.0');
+$app->getHelperSet()->set(new LogfileHelper());
 $app->addCommands(array(
 	new Derhansen\Quixr\Commands\AnalyzeCommand()
 ));

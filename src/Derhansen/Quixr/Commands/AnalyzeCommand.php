@@ -29,6 +29,8 @@ class AnalyzeCommand extends Command {
 	 * @return bool|int|null
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		$output->writeln('Do something here');
+		/** @var \Derhansen\Quixr\Helper\LogfileHelper $helper */
+		$helper = $this->getHelper('logfile');
+		$output->writeln('Do something here ' . $helper->dummy());
 	}
 }
