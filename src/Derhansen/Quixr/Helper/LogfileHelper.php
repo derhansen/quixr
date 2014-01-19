@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Derhansen\Quixr\Helper;
 
