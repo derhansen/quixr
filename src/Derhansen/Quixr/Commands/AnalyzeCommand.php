@@ -33,4 +33,5 @@ class AnalyzeCommand extends Command {
 		$helper = $this->getHelper('logfile');
 		$output->writeln('Do something here ' . $helper->dummy());
 	}
+
 }

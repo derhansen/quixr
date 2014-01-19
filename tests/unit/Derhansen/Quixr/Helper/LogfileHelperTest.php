@@ -4,6 +4,8 @@ namespace tests\unit\Derhansen\Quixr\Commands;
 
 use \Derhansen\Quixr\Helper\LogfileHelper;
 
+require_once __DIR__ . '/../../../bootstrap.php';
+
 class LogfileHelperTest extends \PHPUnit_Framework_TestCase {
 
 	/**
@@ -13,4 +15,5 @@ class LogfileHelperTest extends \PHPUnit_Framework_TestCase {
 		$helper = new LogfileHelper();
 		$this->assertEquals('From Helper', $helper->dummy());
 	}
+
 }
