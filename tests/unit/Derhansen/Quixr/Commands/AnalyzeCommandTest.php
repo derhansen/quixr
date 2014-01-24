@@ -23,7 +23,15 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 
 		$command = $application->find('analyze');
 		$commandTester = new CommandTester($command);
-		$commandTester->execute(array('command' => $command->getName()));
+		$commandTester->execute(
+			array(
+				'command' => $command->getName(),
+				'vhost-path' => '/var/www/',
+				'logfile-path' => 'logfiles',
+				'logfiles' => 'access.log',
+				'target-file' => 'traffic.json'
+			)
+		);
 
 		$this->assertRegExp('/^Do something here From Helper$/', $commandTester->getDisplay());
 	}
