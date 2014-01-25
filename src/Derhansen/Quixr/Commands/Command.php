@@ -20,7 +20,8 @@ abstract class Command extends BaseCommand {
 	public function getQuixr() {
 		/** @var $application Application */
 		$application = $this->getApplication();
-		return $application->getQuixr();
+		$this->quixr = $application->getQuixr();
+		return $this->quixr;
 	}
 
 }
