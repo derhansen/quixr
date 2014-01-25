@@ -13,10 +13,16 @@ class Quixr {
 	private $logfile;
 
 	/**
+	 * @var Filesystem
+	 */
+	private $filesystem;
+
+	/**
 	 * Constructor
 	 */
 	function __construct() {
 		$this->logfile = new Logfile();
+		$this->logfile = new Filesystem();
 	}
 
 	/**
@@ -24,6 +30,13 @@ class Quixr {
 	 */
 	public function getLogfile() {
 		return $this->logfile;
+	}
+
+	/**
+	 * @return \Derhansen\Quixr\Util\Filesystem
+	 */
+	public function getFilesystem() {
+		return $this->filesystem;
 	}
 
 }
