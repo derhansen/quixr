@@ -2,12 +2,12 @@
 
 namespace tests\unit\Derhansen\Quixr\Helper;
 
-use Derhansen\Quixr\Util\Logfile;
+use Derhansen\Quixr\Util\Logparser;
 
 class LogfileTest extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * @var Logfile
+	 * @var Logparser
 	 */
 	protected $logfile;
 
@@ -16,7 +16,7 @@ class LogfileTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function setUp() {
-		$this->logfile = new Logfile();
+		$this->logfile = new Logparser();
 	}
 
 	/**
