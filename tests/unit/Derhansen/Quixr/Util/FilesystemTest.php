@@ -3,18 +3,31 @@
 namespace tests\unit\Derhansen\Quixr\Helper;
 
 use Derhansen\Quixr\Helper\FilesystemHelper;
+use Derhansen\Quixr\Util\Filesystem;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
 
-class FilesystemHelperTest extends \PHPUnit_Framework_TestCase {
+class FilesystemTest extends \PHPUnit_Framework_TestCase {
+
+	/**
+	 * @var Filesystem
+	 */
+	protected $filesysten;
+
+	/**
+	 * Setup
+	 * @return void
+	 */
+	public function setUp() {
+		$this->filesysten = new Filesystem();
+	}
 
 	/**
 	 * @test
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfNoPathGivenTest() {
-		$helper = new FilesystemHelper();
-		$this->assertFalse($helper->getSubdirectories(NULL));
+		$this->assertFalse($this->filesysten->getSubdirectories(NULL));
 	}
 
 	/**
@@ -22,8 +35,7 @@ class FilesystemHelperTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfEmptyPathGivenTest() {
-		$helper = new FilesystemHelper();
-		$this->assertFalse($helper->getSubdirectories(''));
+		$this->assertFalse($this->filesysten->getSubdirectories(''));
 	}
 
 	/**
@@ -31,8 +43,7 @@ class FilesystemHelperTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfPathDoesNotEndWithSlashTest() {
-		$helper = new FilesystemHelper();
-		$this->assertFalse($helper->getSubdirectories('/var/www'));
+		$this->assertFalse($this->filesysten->getSubdirectories('/var/www'));
 	}
 
 	/**
@@ -40,10 +51,8 @@ class FilesystemHelperTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfNonExistingPathGivenTest() {
-		$helper = new FilesystemHelper();
-
 		vfsStream::setup('var');
-		$this->assertFalse($helper->getSubdirectories(vfsStream::url('var/www/')));
+		$this->assertFalse($this->filesysten->getSubdirectories(vfsStream::url('var/www/')));
 	}
 
 	/**
@@ -51,8 +60,6 @@ class FilesystemHelperTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsArrayOfDirsForExistingPathTest() {
-		$helper = new FilesystemHelper();
-
 		$root = vfsStream::setup('var');
 		$wwwDir = vfsStream::newDirectory('www', 777);
 		$wwwDir->addChild(vfsStream::newDirectory('vhost1', 777));
@@ -62,7 +69,7 @@ class FilesystemHelperTest extends \PHPUnit_Framework_TestCase {
 		$root->addChild($wwwDir);
 
 		$expected = array('vhost1', 'vhost2', 'vhost3');
-		$this->assertSame($expected, $helper->getSubdirectories(vfsStream::url('var/www/')));
+		$this->assertSame($expected, $this->filesysten->getSubdirectories(vfsStream::url('var/www/')));
 	}
 
 }

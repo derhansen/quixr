@@ -1,21 +1,8 @@
 <?php
 
-namespace Derhansen\Quixr\Helper;
+namespace Derhansen\Quixr\Util;
 
-use Symfony\Component\Console\Helper\Helper;
-
-class FilesystemHelper extends Helper {
-
-	/**
-	 * Returns the canonical name of this helper.
-	 *
-	 * @return string The canonical name
-	 *
-	 * @api
-	 */
-	public function getName() {
-		return 'filesystem';
-	}
+class Filesystem {
 
 	/**
 	 * Returns an array of subdirectories for the given path
