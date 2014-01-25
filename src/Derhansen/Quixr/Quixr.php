@@ -22,7 +22,7 @@ class Quixr {
 	 */
 	function __construct() {
 		$this->logfile = new Logfile();
-		$this->logfile = new Filesystem();
+		$this->filesystem = new Filesystem();
 	}
 
 	/**
