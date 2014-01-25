@@ -5,6 +5,7 @@ namespace Derhansen\Quixr\Commands;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Derhansen\Quixr\Util\Returncodes;
 
 class AnalyzeCommand extends Command {
 
@@ -32,6 +33,11 @@ class AnalyzeCommand extends Command {
 	 * @return bool|int|null
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
+		$dirs = $this->getQuixr()->getFilesystem()->getSubdirectories($input->getArgument('vhost-path'));
+		if ($dirs === FALSE | count($dirs) === 0) {
+			$output->writeln('Given vhost-path not found or empty');
+			return Returncodes::PATH_NOT_FOUND_OR_EMPTY;
+		}
 		$output->writeln('Do something here ' . $this->getQuixr()->getLogfile()->dummy());
 	}
 

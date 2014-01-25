@@ -2,7 +2,6 @@
 
 namespace tests\unit\Derhansen\Quixr\Helper;
 
-use Derhansen\Quixr\Helper\FilesystemHelper;
 use Derhansen\Quixr\Util\Filesystem;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
