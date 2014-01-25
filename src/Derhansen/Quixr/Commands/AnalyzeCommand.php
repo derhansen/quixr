@@ -33,9 +33,15 @@ class AnalyzeCommand extends Command {
 	 * @return bool|int|null
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		/** @var \Derhansen\Quixr\Helper\LogfileHelper $helper */
-		$helper = $this->getHelper('logfile');
-		$output->writeln('Do something here ' . $helper->dummy());
+		/** @var \Derhansen\Quixr\Helper\LogfileHelper $logHelper */
+		$logHelper = $this->getHelper('logfile');
+
+		/** @var \Derhansen\Quixr\Helper\FilesystemHelper $fsHelper */
+		$fsHelper = $this->getHelper('filesystem');
+
+		//print_r($fsHelper->getSubdirectories('/var/www/'));
+
+		$output->writeln('Do something here ' . $logHelper->dummy());
 	}
 
 }

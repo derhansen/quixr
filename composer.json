@@ -6,6 +6,9 @@
     "require": {
         "symfony/console": "2.4.*"
     },
+    "require-dev": {
+        "mikey179/vfsStream": "1.2.*"
+    },
     "autoload": {
         "psr-0": {
             "Derhansen\\Quixr": "src/"

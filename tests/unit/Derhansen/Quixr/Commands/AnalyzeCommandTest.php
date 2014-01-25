@@ -6,6 +6,7 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Derhansen\Quixr\Commands\AnalyzeCommand;
 use Derhansen\Quixr\Helper\LogfileHelper;
+use Derhansen\Quixr\Helper\FilesystemHelper;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
@@ -19,6 +20,7 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 	public function testExecute() {
 		$application = new Application();
 		$application->getHelperSet()->set(new LogfileHelper());
+		$application->getHelperSet()->set(new FilesystemHelper());
 		$application->add(new AnalyzeCommand());
 
 		$command = $application->find('analyze');
