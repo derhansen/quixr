@@ -38,7 +38,7 @@ class AnalyzeCommand extends Command {
 			$output->writeln('Given vhost-path not found or empty');
 			return Returncodes::PATH_NOT_FOUND_OR_EMPTY;
 		}
-		$output->writeln('Do something here ' . $this->getQuixr()->getLogparser()->dummy());
+		$output->writeln('Do something here ' . $this->getQuixr()->getLoganalyzer()->dummy());
 	}
 
 }

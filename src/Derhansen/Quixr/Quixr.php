@@ -2,15 +2,15 @@
 
 namespace Derhansen\Quixr;
 
-use Derhansen\Quixr\Util\Logparser;
+use Derhansen\Quixr\Util\Loganalyzer;
 use Derhansen\Quixr\Util\Filesystem;
 
 class Quixr {
 
 	/**
-	 * @var Logparser;
+	 * @var Loganalyzer;
 	 */
-	private $logparser;
+	private $loganalyzer;
 
 	/**
 	 * @var Filesystem
@@ -21,15 +21,15 @@ class Quixr {
 	 * Constructor
 	 */
 	function __construct() {
-		$this->logparser = new Logparser();
+		$this->loganalyzer = new Loganalyzer();
 		$this->filesystem = new Filesystem();
 	}
 
 	/**
-	 * @return \Derhansen\Quixr\Util\Logparser
+	 * @return \Derhansen\Quixr\Util\Loganalyzer
 	 */
-	public function getLogparser() {
-		return $this->logparser;
+	public function getLoganalyzer() {
+		return $this->loganalyzer;
 	}
 
 	/**

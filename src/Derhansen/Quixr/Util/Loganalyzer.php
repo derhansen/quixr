@@ -2,7 +2,7 @@
 
 namespace Derhansen\Quixr\Util;
 
-class Logparser {
+class Loganalyzer {
 
 	/**
 	 * Dummy method
