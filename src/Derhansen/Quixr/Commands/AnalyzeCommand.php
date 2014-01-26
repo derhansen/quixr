@@ -38,6 +38,12 @@ class AnalyzeCommand extends Command {
 			$output->writeln('Given vhost-path not found or empty');
 			return Returncodes::PATH_NOT_FOUND_OR_EMPTY;
 		}
+
+		//$this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400, 10519961, 'dc0158f34f1135bfa6cefb72bcc7b4e4');
+		//$this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400);
+		// $this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400);
+		// @todo - Make analyzeLogfile accept an array (from existing traffic data file)
+
 		$output->writeln('Do something here ' . $this->getQuixr()->getLoganalyzer()->dummy());
 	}
 

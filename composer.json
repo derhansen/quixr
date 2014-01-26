@@ -3,8 +3,17 @@
     "description": "Quixr",
     "homepage": "https://github.com/derhansen/quixr",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Torben Hansen",
+            "email": "derhansen@gmail.com",
+            "homepage": "http://www.derhansen.de/",
+            "role": "Developer"
+        }
+    ],
     "require": {
-        "symfony/console": "2.4.*"
+        "symfony/console": "2.4.*",
+        "kassner/apache-log-parser": "dev-master"
     },
     "require-dev": {
         "mikey179/vfsStream": "1.2.*"
