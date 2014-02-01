@@ -13,11 +13,17 @@ class Loganalyzer {
 
 	/**
 	 * Constructor - sets default logformat to combined
+	 *
+	 * @param mixed $parser
 	 */
-	function __construct() {
-		$this->parser = new ApacheLogParser("%h %l %u %t \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\"");
+	function __construct($parser = NULL) {
+		if (!$parser) {
+			$this->parser = new ApacheLogParser();
+		} else {
+			$this->parser = $parser;
+		}
+		$this->parser->setFormat(Logformat::COMBINED);
 	}
-
 
 	/**
 	 * @param $logfile
@@ -28,9 +34,6 @@ class Loganalyzer {
 	 * @return bool|array
 	 */
 	public function analyzeLogfile($logfile, $vhostname = '', $starttime = 0, $offset = -1, $comparehash = '') {
-		// @todo Remove when option for format is implemented
-		$this->parser->setFormat("%h %l %u %t \"%r\" %>s %O");
-
 		$ret = array(
 			$vhostname => array(
 			'traffic' => array(),
@@ -96,6 +99,24 @@ class Loganalyzer {
 			}
 		}
 		return $handle;
+	}
+
+	/**
+	 * Sets the format of the logfile
+	 *
+	 * @param string $format
+	 */
+	public function setLogformat($format) {
+		switch ($format) {
+			case 'common':
+				$this->parser->setFormat(Logformat::COMMON);
+				break;
+			case 'combined':
+				$this->parser->setFormat(Logformat::COMBINED);
+				break;
+			default:
+				$this->parser->setFormat(Logformat::COMBINED);
+		}
 	}
 
 	/**
