@@ -3,6 +3,7 @@
 namespace Derhansen\Quixr\Util;
 
 use Kassner\ApacheLogParser\ApacheLogParser;
+use Derhansen\Quixr\Exceptions\AnalyzeLogfileException;
 
 class Loganalyzer {
 
@@ -30,6 +31,7 @@ class Loganalyzer {
 	 *
 	 * @param string $logfile The logfile
 	 * @param array $vhostData Array with traffic data for vhost
+	 * @throws AnalyzeLogfileException
 	 * @return bool|array
 	 */
 	public function analyzeLogfile($logfile, $vhostData) {
@@ -40,10 +42,13 @@ class Loganalyzer {
 
 		$lastOffset = 0;
 
-		// @todo Replace die() with Exception
-		$handle = fopen($logfile, 'r') or die('Couldnt get handle');
-		if (!$handle) {
-			return FALSE;
+		try {
+			$handle = fopen($logfile, 'r');
+			if (!$handle) {
+				return FALSE;
+			}
+		} catch(\Exception $e) {
+			throw new AnalyzeLogfileException($e->getMessage(), $e->getCode(), $e);
 		}
 
 		// Set handle to offset
@@ -67,7 +72,7 @@ class Loganalyzer {
 					$vhostData[$vhostname]['lastlinehash'] = md5($rawline);
 				}
 			} catch(\Exception $e) {
-				// @todo handle exception
+				throw new AnalyzeLogfileException($e->getMessage(), $e->getCode(), $e);
 			}
 		}
 		fclose($handle);
