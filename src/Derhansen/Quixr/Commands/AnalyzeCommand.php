@@ -44,11 +44,29 @@ class AnalyzeCommand extends Command {
 		// Sets the logformat
 		$this->getQuixr()->getLoganalyzer()->setLogformat($input->getArgument('logformat'));
 
+		// @todo try to open given target-file and read config to local array
+
+		// @todo check each directory in $dirs for a logfile
+
+		// @todo analyze traffic and replace vhost entry in local array
+
+		// @todo write new target file after each iteration
+
+		// Temp data for testing
+		$vhostData = array(
+			'vhost1' => array(
+				'traffic' => array(),
+				'lasttstamp' => 1388534400,
+				'lastoffset' => 10519961,
+				'lastlinehash' => 'dc0158f34f1135bfa6cefb72bcc7b4e4'
+			)
+		);
+
 		// Use below with: ./bin/quixr analyze /var/www/ logfiles access_log traffic.json common
+		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', $vhostData));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400, 10519961, 'dc0158f34f1135bfa6cefb72bcc7b4e4'));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400));
-		// @todo - Make analyzeLogfile accept an array (from existing traffic data file)
 
 		$output->writeln('Do something here ' . $this->getQuixr()->getLoganalyzer()->dummy());
 	}

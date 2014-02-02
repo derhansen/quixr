@@ -26,22 +26,17 @@ class Loganalyzer {
 	}
 
 	/**
-	 * @param $logfile
-	 * @param string $vhostname
-	 * @param int $starttime
-	 * @param $offset
-	 * @param string $comparehash
+	 * Analyzes the logfile and updates the given array with vhost traffic data
+	 *
+	 * @param string $logfile The logfile
+	 * @param array $vhostData Array with traffic data for vhost
 	 * @return bool|array
 	 */
-	public function analyzeLogfile($logfile, $vhostname = '', $starttime = 0, $offset = -1, $comparehash = '') {
-		$ret = array(
-			$vhostname => array(
-			'traffic' => array(),
-			'lasttstamp' => 0,
-			'lastoffset' => -1,
-			'lastlinehash' => ''
-			)
-		);
+	public function analyzeLogfile($logfile, $vhostData) {
+		$vhostname = current(array_keys($vhostData));
+		$starttime = $vhostData[$vhostname]['lasttstamp'];
+		$offset = $vhostData[$vhostname]['lastoffset'];
+		$comparehash = $vhostData[$vhostname]['lastlinehash'];
 
 		$lastOffset = 0;
 
@@ -62,14 +57,14 @@ class Loganalyzer {
 					$previousOffset = $lastOffset;
 					$lastOffset = ftell($handle);
 
-					if (isset($ret[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)])) {
-						$ret[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] += $lineObj->sentBytes;
+					if (isset($vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)])) {
+						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] += $lineObj->sentBytes;
 					} else {
-						$ret[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] = $lineObj->sentBytes;
+						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] = $lineObj->sentBytes;
 					}
-					$ret[$vhostname]['lasttstamp'] = $lineObj->stamp;
-					$ret[$vhostname]['lastoffset'] = $previousOffset;
-					$ret[$vhostname]['lastlinehash'] = md5($rawline);
+					$vhostData[$vhostname]['lasttstamp'] = $lineObj->stamp;
+					$vhostData[$vhostname]['lastoffset'] = $previousOffset;
+					$vhostData[$vhostname]['lastlinehash'] = md5($rawline);
 				}
 			} catch(\Exception $e) {
 				// @todo handle exception
@@ -77,7 +72,7 @@ class Loganalyzer {
 		}
 		fclose($handle);
 
-		return $ret;
+		return $vhostData;
 	}
 
 	/**
