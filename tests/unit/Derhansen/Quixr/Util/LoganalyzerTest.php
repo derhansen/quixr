@@ -2,7 +2,6 @@
 
 namespace tests\unit\Derhansen\Quixr\Helper;
 
-use Kassner\ApacheLogParser\ApacheLogParser;
 use Derhansen\Quixr\Util\Loganalyzer;
 use Derhansen\Quixr\Util\Logformat;
 use org\bovigo\vfs\vfsStream;
@@ -28,7 +27,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function loganalyzerSetsCombinedAsDefaultLogformatInConstructorTest() {
-		$mockLoganalyzer = $this->getMock('Kassner\ApacheLogParser\ApacheLogParser');
+		$mockLoganalyzer = $this->getMock('Kassner\LogParser\LogParser');
 		$mockLoganalyzer->expects($this->once())->method('setFormat')->with(Logformat::COMBINED);
 		new Loganalyzer($mockLoganalyzer);
 	}
@@ -38,7 +37,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function setLogformatSetsGivenLogformatTest() {
-		$mockLoganalyzer = $this->getMock('Kassner\ApacheLogParser\ApacheLogParser');
+		$mockLoganalyzer = $this->getMock('Kassner\LogParser\LogParser');
 		$mockLoganalyzer->expects($this->at(0))->method('setFormat')->with(Logformat::COMBINED);
 		$mockLoganalyzer->expects($this->at(1))->method('setFormat')->with(Logformat::COMMON);
 		$localLoganalyzer = new Loganalyzer($mockLoganalyzer);
@@ -50,7 +49,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function setLogformatSetsDefaultFormatIfWrongFormatGivenTest() {
-		$mockLoganalyzer = $this->getMock('Kassner\ApacheLogParser\ApacheLogParser');
+		$mockLoganalyzer = $this->getMock('Kassner\LogParser\LogParser');
 		$mockLoganalyzer->expects($this->at(0))->method('setFormat')->with(Logformat::COMBINED);
 		$mockLoganalyzer->expects($this->at(1))->method('setFormat')->with(Logformat::COMBINED);
 		$localLoganalyzer = new Loganalyzer($mockLoganalyzer);

@@ -2,13 +2,13 @@
 
 namespace Derhansen\Quixr\Util;
 
-use Kassner\ApacheLogParser\ApacheLogParser;
+use Kassner\LogParser\LogParser;
 use Derhansen\Quixr\Exceptions\AnalyzeLogfileException;
 
 class Loganalyzer {
 
 	/**
-	 * @var ApacheLogParser
+	 * @var LogParser
 	 */
 	protected $parser;
 
@@ -19,7 +19,7 @@ class Loganalyzer {
 	 */
 	function __construct($parser = NULL) {
 		if (!$parser) {
-			$this->parser = new ApacheLogParser();
+			$this->parser = new LogParser();
 		} else {
 			$this->parser = $parser;
 		}
