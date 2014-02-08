@@ -2,6 +2,8 @@
 
 namespace Derhansen\Quixr\Util;
 
+use Derhansen\Quixr\Exceptions\NoValidJSONException;
+
 class Filesystem {
 
 	/**
@@ -27,6 +29,25 @@ class Filesystem {
 		} else {
 			return FALSE;
 		}
+	}
+
+	/**
+	 * Reads the given file and returns the content as an array. If the file does not
+	 * exist, an empty array is returned.
+	 *
+	 * @param string $file
+	 * @throws NoValidJSONException
+	 * @return array
+	 */
+	public function getTargetJSONAsArray($file) {
+		if (!file_exists($file)) {
+			return array();
+		}
+		$content = file_get_contents($file);
+		if (!is_object(json_decode($content))) {
+			throw new NoValidJSONException('File does not contain valid JSON data');
+		}
+		return json_decode($content, TRUE);
 	}
 
 }
