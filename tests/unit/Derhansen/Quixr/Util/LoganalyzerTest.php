@@ -151,7 +151,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				),
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 858,
-				'lastlinehash' => '12d4a26373f007f83779b8c1f1c25726'
+				'lastlinehash' => '2dd22936f7de0eeea924e366547c878e'
 			)
 		);
 		$this->assertSame($expected, $result);
@@ -175,7 +175,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				),
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 1573,
-				'lastlinehash' => '4ae3873a43a4496392bc556cd9de76a4'
+				'lastlinehash' => 'e973361fbe96a50ade0d8a3c705c4606'
 			)
 		);
 		$this->assertSame($expected, $result);
@@ -203,7 +203,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				),
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 858,
-				'lastlinehash' => '12d4a26373f007f83779b8c1f1c25726'
+				'lastlinehash' => '2dd22936f7de0eeea924e366547c878e'
 			)
 		);
 		$this->assertSame($expected, $result);
@@ -230,7 +230,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				),
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 1573,
-				'lastlinehash' => '4ae3873a43a4496392bc556cd9de76a4'
+				'lastlinehash' => 'e973361fbe96a50ade0d8a3c705c4606'
 			)
 		);
 		$this->assertSame($expected, $result);
@@ -256,7 +256,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				),
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 858,
-				'lastlinehash' => '12d4a26373f007f83779b8c1f1c25726'
+				'lastlinehash' => '2dd22936f7de0eeea924e366547c878e'
 			)
 		);
 		$this->assertSame($expected, $result);
@@ -281,7 +281,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				),
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 1573,
-				'lastlinehash' => '4ae3873a43a4496392bc556cd9de76a4'
+				'lastlinehash' => 'e973361fbe96a50ade0d8a3c705c4606'
 			)
 		);
 		$this->assertSame($expected, $result);

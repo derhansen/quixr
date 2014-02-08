@@ -56,6 +56,8 @@ class Loganalyzer {
 
 		while (!feof($handle)) {
 			$rawline = fgets($handle, 4096);
+			// Ignore blank lines
+			if ($rawline == '') continue;
 			try {
 				$lineObj = $this->parser->parse($rawline);
 				if ($lineObj->stamp > $starttime) {
