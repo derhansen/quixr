@@ -162,6 +162,30 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 * @return void
 	 */
+	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCombinedLogfileWithNoHistoricalData() {
+		$vhostData = $this->getDefaultVhostData();
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/combined.log', $vhostData);
+		$expected = array(
+			'vhost1' => array(
+				'traffic' => array(
+					'2014' => array(
+						'02' => array(
+							'02' => 12288
+						)
+					)
+				),
+				'lasttstamp' => 1391342760,
+				'lastoffset' => 1573,
+				'lastlinehash' => '4ae3873a43a4496392bc556cd9de76a4'
+			)
+		);
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @test
+	 * @return void
+	 */
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCommonLogfileWithHistoricalData() {
 		$vhostData = $this->getDefaultVhostData();
 		$vhostData['vhost1']['traffic']['2014']['02']['01'] = 1024;
@@ -190,6 +214,33 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 * @return void
 	 */
+	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCombinedLogfileWithHistoricalData() {
+		$vhostData = $this->getDefaultVhostData();
+		$vhostData['vhost1']['traffic']['2014']['02']['01'] = 1024;
+		$vhostData['vhost1']['traffic']['2014']['02']['02'] = 1024;
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/combined.log', $vhostData);
+		$expected = array(
+			'vhost1' => array(
+				'traffic' => array(
+					'2014' => array(
+						'02' => array(
+							'01' => 1024,
+							'02' => 13312
+						)
+					)
+				),
+				'lasttstamp' => 1391342760,
+				'lastoffset' => 1573,
+				'lastlinehash' => '4ae3873a43a4496392bc556cd9de76a4'
+			)
+		);
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @test
+	 * @return void
+	 */
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCommonLogfileWithLasttstamp() {
 		$vhostData = $this->getDefaultVhostData();
 		$vhostData['vhost1']['lasttstamp'] = 1391342340;
@@ -207,6 +258,31 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 				'lasttstamp' => 1391342760,
 				'lastoffset' => 858,
 				'lastlinehash' => '12d4a26373f007f83779b8c1f1c25726'
+			)
+		);
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @test
+	 * @return void
+	 */
+	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCombinedLogfileWithLasttstamp() {
+		$vhostData = $this->getDefaultVhostData();
+		$vhostData['vhost1']['lasttstamp'] = 1391342340;
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/combined.log', $vhostData);
+		$expected = array(
+			'vhost1' => array(
+				'traffic' => array(
+					'2014' => array(
+						'02' => array(
+							'02' => 7168
+						)
+					)
+				),
+				'lasttstamp' => 1391342760,
+				'lastoffset' => 1573,
+				'lastlinehash' => '4ae3873a43a4496392bc556cd9de76a4'
 			)
 		);
 		$this->assertSame($expected, $result);
