@@ -288,6 +288,22 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * @test
+	 * @return void
+	 */
+	public function getEmptyVhostDataReturnsExpectedArrayTest() {
+		$expected = array(
+			'test' => array(
+				'traffic' => array(),
+				'lasttstamp' => 0,
+				'lastoffset' => -1,
+				'lastlinehash' => ''
+			)
+		);
+		$this->assertSame($expected, $this->loganalyzer->getEmptyVhostData('test'));
+	}
+
+	/**
 	 * Returns default vhost data
 	 *
 	 * @return array

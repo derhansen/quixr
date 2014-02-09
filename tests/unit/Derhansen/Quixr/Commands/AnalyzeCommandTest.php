@@ -63,7 +63,7 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 				'command' => $this->command->getName(),
 				'vhost-path' => vfsStream::url('var/www/'),
 				'logfile-path' => 'logfiles',
-				'logfiles' => 'access.log',
+				'logfile' => 'access.log',
 				'target-file' => 'traffic.json'
 			)
 		);
@@ -81,7 +81,7 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 				'command' => $this->command->getName(),
 				'vhost-path' => vfsStream::url('var/ww/'),
 				'logfile-path' => 'logfiles',
-				'logfiles' => 'access.log',
+				'logfile' => 'access.log',
 				'target-file' => 'traffic.json'
 			)
 		);
@@ -99,7 +99,7 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 				'command' => $this->command->getName(),
 				'vhost-path' => vfsStream::url('var/empty/'),
 				'logfile-path' => 'logfiles',
-				'logfiles' => 'access.log',
+				'logfile' => 'access.log',
 				'target-file' => 'traffic.json'
 			)
 		);

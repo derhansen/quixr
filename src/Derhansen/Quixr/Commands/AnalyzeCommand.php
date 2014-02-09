@@ -21,7 +21,7 @@ class AnalyzeCommand extends Command {
 			->setDescription('Add Description here')
 			->addArgument('vhost-path', InputArgument::REQUIRED, 'Path to virtial hosts (e.g. /var/www/)')
 			->addArgument('logfile-path', InputArgument::REQUIRED, 'Path to logfiles in each virtual host (e.g. logs)')
-			->addArgument('logfiles', InputArgument::REQUIRED, 'Logfiles (e.g. access.log, access.log.1')
+			->addArgument('logfile', InputArgument::REQUIRED, 'Logfile (e.g. access.log)')
 			->addArgument('target-file', InputArgument::REQUIRED, 'Target JSON file for traffic analysis (e.g. traffic.json')
 			->addArgument('logformat', InputArgument::OPTIONAL, 'Apache2 Logfile format. Allowed values: common, combined', 'combined')
 		;
@@ -41,26 +41,36 @@ class AnalyzeCommand extends Command {
 			return Returncodes::PATH_NOT_FOUND_OR_EMPTY;
 		}
 
+		// @todo Check if target json file exists and is writeable
+		$targetFile = $input->getArgument('target-file');
+
 		// Sets the logformat
 		$this->getQuixr()->getLoganalyzer()->setLogformat($input->getArgument('logformat'));
 
-		// @todo try to open given target-file and read config to local array
+		// Get historical data from target JSON file
+		$trafficData = $this->getQuixr()->getFilesystem()->getTargetJSONAsArray($targetFile);
 
-		// @todo check each directory in $dirs for a logfile
+		foreach ($dirs as $vhost) {
+			$logfile = $input->getArgument('vhost-path') . $vhost . '/' .$input->getArgument('logfile-path') .
+				'/' . $input->getArgument('logfile');
 
-		// @todo analyze traffic and replace vhost entry in local array
+			if (file_exists($logfile)) {
+				if (isset($trafficData[$vhost])) {
+					$currentTraffic = $trafficData[$vhost];
+				} else {
+					$currentTraffic = $this->getQuixr()->getLoganalyzer()->getEmptyVhostData($vhost);
+				}
+				$trafficData[$vhost] = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
+			} else {
+				// @todo print error about missing logfile
+			}
 
-		// @todo write new target file after each iteration
-
-		// Temp data for testing
-		$vhostData = array(
-			'vhost1' => array(
-				'traffic' => array(),
-				'lasttstamp' => 1388534400,
-				'lastoffset' => 10519961,
-				'lastlinehash' => 'dc0158f34f1135bfa6cefb72bcc7b4e4'
-			)
-		);
+			// @todo write new target file after each iteration
+			// @todo Out into function in Derhansen\Quixr\Util\Filesystem
+			$handle = fopen($targetFile, 'w');
+			fwrite($handle, json_encode($trafficData)); // Use JSON_PRETTY_PRINT if PHP >= 5.4
+			fclose($handle);
+		}
 
 		// Use below with: ./bin/quixr analyze /var/www/ logfiles access_log traffic.json common
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', $vhostData));

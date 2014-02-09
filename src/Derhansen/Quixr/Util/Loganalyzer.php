@@ -122,6 +122,24 @@ class Loganalyzer {
 	}
 
 	/**
+	 * Returns an empty array with vhost data
+	 *
+	 * @param string $vhost
+	 * @return array
+	 */
+	public function getEmptyVhostData($vhost) {
+		$vhostData = array(
+			$vhost => array(
+				'traffic' => array(),
+				'lasttstamp' => 0,
+				'lastoffset' => -1,
+				'lastlinehash' => ''
+			)
+		);
+		return $vhostData;
+	}
+
+	/**
 	 * Dummy method
 	 *
 	 * @return string
