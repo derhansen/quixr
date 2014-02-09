@@ -41,13 +41,17 @@ class AnalyzeCommand extends Command {
 			return Returncodes::PATH_NOT_FOUND_OR_EMPTY;
 		}
 
-		// @todo Check if target json file exists and is writeable
 		$targetFile = $input->getArgument('target-file');
+		if (!$this->getQuixr()->getFilesystem()->checkTargetFileWriteable($targetFile)) {
+			$output->writeln('Target file is not writeable');
+			return Returncodes::TARGET_FILE_NOT_WRITEABLE;
+		}
 
 		// Sets the logformat
 		$this->getQuixr()->getLoganalyzer()->setLogformat($input->getArgument('logformat'));
 
 		// Get historical data from target JSON file
+		// @todo - Catch exception for invalid JSON data
 		$trafficData = $this->getQuixr()->getFilesystem()->getTargetJSONAsArray($targetFile);
 
 		foreach ($dirs as $vhost) {

@@ -32,6 +32,22 @@ class Filesystem {
 	}
 
 	/**
+	 * Checks if the given file exists and is writeable.
+	 *
+	 * @param string $file
+	 * @return bool
+	 */
+	public function checkTargetFileWriteable($file) {
+		$handle = @fopen($file, 'w');
+		if ($handle === FALSE) {
+			return $handle;
+		} else {
+			fclose($handle);
+			return TRUE;
+		}
+	}
+
+	/**
 	 * Reads the given file and returns the content as an array. If the file does not
 	 * exist, an empty array is returned.
 	 *
