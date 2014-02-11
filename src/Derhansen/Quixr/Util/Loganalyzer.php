@@ -36,9 +36,9 @@ class Loganalyzer {
 	 */
 	public function analyzeLogfile($logfile, $vhostData) {
 		$vhostname = current(array_keys($vhostData));
-		$starttime = $vhostData[$vhostname]['lasttstamp'];
-		$offset = $vhostData[$vhostname]['lastoffset'];
-		$comparehash = $vhostData[$vhostname]['lastlinehash'];
+		$starttime = $vhostData[$vhostname]['quixr']['traffic_lasttstamp'];
+		$offset = $vhostData[$vhostname]['quixr']['traffic_lastoffset'];
+		$comparehash = $vhostData[$vhostname]['quixr']['traffic_lastlinehash'];
 
 		$lastOffset = 0;
 
@@ -69,9 +69,9 @@ class Loganalyzer {
 					} else {
 						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] = $lineObj->sentBytes;
 					}
-					$vhostData[$vhostname]['lasttstamp'] = $lineObj->stamp;
-					$vhostData[$vhostname]['lastoffset'] = $previousOffset;
-					$vhostData[$vhostname]['lastlinehash'] = md5($rawline);
+					$vhostData[$vhostname]['quixr']['traffic_lasttstamp'] = $lineObj->stamp;
+					$vhostData[$vhostname]['quixr']['traffic_lastoffset'] = $previousOffset;
+					$vhostData[$vhostname]['quixr']['traffic_lastlinehash'] = md5($rawline);
 				}
 			} catch(\Exception $e) {
 				throw new AnalyzeLogfileException($e->getMessage(), $e->getCode(), $e);
@@ -131,9 +131,11 @@ class Loganalyzer {
 		$vhostData = array(
 			$vhost => array(
 				'traffic' => array(),
-				'lasttstamp' => 0,
-				'lastoffset' => -1,
-				'lastlinehash' => ''
+				'quixr' => array(
+					'traffic_lasttstamp' => 0,
+					'traffic_lastoffset' => -1,
+					'traffic_lastlinehash' => ''
+				),
 			)
 		);
 		return $vhostData;
