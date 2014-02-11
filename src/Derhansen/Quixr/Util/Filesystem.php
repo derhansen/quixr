@@ -60,6 +60,9 @@ class Filesystem {
 			return array();
 		}
 		$content = file_get_contents($file);
+		if ($content === '') {
+			return array();
+		}
 		if (!is_object(json_decode($content))) {
 			throw new NoValidJSONException('File does not contain valid JSON data');
 		}

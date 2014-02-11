@@ -144,7 +144,6 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
-
 	/**
 	 * @test
 	 * @return void
@@ -154,5 +153,26 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 		$jsonArray = array('key' => 'value');
 		file_put_contents($file, json_encode($jsonArray));
 		$this->assertEquals($jsonArray, $this->filesysten->getTargetJSONAsArray(vfsStream::url('var/target.json')));
+	}
+
+	/**
+	 * @test
+	 * @return void
+	 */
+	public function getTargetJSONAsArrayFileReturnsExpectedArrayIfFileExistsButEmpty() {
+		$file = vfsStream::url('var/target.json');
+		file_put_contents($file, '');
+		$this->assertEquals(array(), $this->filesysten->getTargetJSONAsArray(vfsStream::url('var/target.json')));
+	}
+
+	/**
+	 * @test
+	 * @expectedException \Derhansen\Quixr\Exceptions\NoValidJSONException
+	 * @return void
+	 */
+	public function getTargetJSONAsArrayFileReturnsExceptionIfFileDoesNotContainValidJson() {
+		$file = vfsStream::url('var/target.json');
+		file_put_contents($file, 'Invalid JSON');
+		$this->filesysten->getTargetJSONAsArray(vfsStream::url('var/target.json'));
 	}
 }
