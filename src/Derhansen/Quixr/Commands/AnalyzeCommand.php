@@ -64,7 +64,7 @@ class AnalyzeCommand extends Command {
 				} else {
 					$currentTraffic = $this->getQuixr()->getLoganalyzer()->getEmptyVhostData($vhost);
 				}
-				$trafficData[$vhost] = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
+				$trafficData[] = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
 			} else {
 				// @todo print error about missing logfile
 			}
