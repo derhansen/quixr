@@ -38,7 +38,7 @@ class Filesystem {
 	 * @return bool
 	 */
 	public function checkTargetFileWriteable($file) {
-		$handle = @fopen($file, 'w');
+		$handle = @fopen($file, 'c+');
 		if ($handle === FALSE) {
 			return $handle;
 		} else {

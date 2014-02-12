@@ -77,8 +77,8 @@ class Loganalyzer {
 				throw new AnalyzeLogfileException($e->getMessage(), $e->getCode(), $e);
 			}
 		}
-		fclose($handle);
 
+		fclose($handle);
 		return $vhostData;
 	}
 

@@ -58,13 +58,15 @@ class AnalyzeCommand extends Command {
 			$logfile = $input->getArgument('vhost-path') . $vhost . '/' .$input->getArgument('logfile-path') .
 				'/' . $input->getArgument('logfile');
 
+			$currentTraffic = array();
 			if (file_exists($logfile)) {
 				if (isset($trafficData[$vhost])) {
-					$currentTraffic = $trafficData[$vhost];
+					$currentTraffic[$vhost] = $trafficData[$vhost];
 				} else {
 					$currentTraffic = $this->getQuixr()->getLoganalyzer()->getEmptyVhostData($vhost);
 				}
-				$trafficData[] = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
+				$newData = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
+				$trafficData[$vhost] = $newData[$vhost];
 			} else {
 				// @todo print error about missing logfile
 			}
