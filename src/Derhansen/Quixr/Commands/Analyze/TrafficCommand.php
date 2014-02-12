@@ -1,14 +1,14 @@
 <?php
 
-namespace Derhansen\Quixr\Commands;
+namespace Derhansen\Quixr\Commands\Analyze;
 
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Derhansen\Quixr\Util\Returncodes;
+use Derhansen\Quixr\Commands\Command;
 
-class AnalyzeCommand extends Command {
+class TrafficCommand extends Command {
 
 	/**
 	 * Configuration
@@ -17,8 +17,8 @@ class AnalyzeCommand extends Command {
 	 */
 	protected function configure() {
 		$this
-			->setName('analyze')
-			->setDescription('Add Description here')
+			->setName('analyze:traffic')
+			->setDescription('Analyzes traffic for all virtual hosts in a given path')
 			->addArgument('vhost-path', InputArgument::REQUIRED, 'Path to virtial hosts (e.g. /var/www/)')
 			->addArgument('logfile-path', InputArgument::REQUIRED, 'Path to logfiles in each virtual host (e.g. logs)')
 			->addArgument('logfile', InputArgument::REQUIRED, 'Logfile (e.g. access.log)')
@@ -78,7 +78,7 @@ class AnalyzeCommand extends Command {
 			fclose($handle);
 		}
 
-		// Use below with: ./bin/quixr analyze /var/www/ logfiles access_log traffic.json common
+		// Use below with: ./bin/quixr analyze:traffic /var/www/ logfiles access_log traffic.json common
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', $vhostData));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400, 10519961, 'dc0158f34f1135bfa6cefb72bcc7b4e4'));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400));

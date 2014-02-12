@@ -6,13 +6,13 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
 use Derhansen\Quixr\Console\Application;
-use Derhansen\Quixr\Commands\AnalyzeCommand;
+use Derhansen\Quixr\Commands\Analyze\TrafficCommand;
 use Derhansen\Quixr\Util\Returncodes;
 use org\bovigo\vfs\vfsStream;
 
 require_once __DIR__ . '/../../../bootstrap.php';
 
-class TestCommandTest extends \PHPUnit_Framework_TestCase {
+class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @var \org\bovigo\vfs\vfsStreamDirectory
@@ -46,9 +46,9 @@ class TestCommandTest extends \PHPUnit_Framework_TestCase {
 		$this->root = vfsStream::setup('var', 777, $structure);
 
 		$application = new Application();
-		$application->add(new AnalyzeCommand());
+		$application->add(new TrafficCommand());
 
-		$this->command = $application->find('analyze');
+		$this->command = $application->find('analyze:traffic');
 		$this->commandTester = new CommandTester($this->command);
 	}
 
