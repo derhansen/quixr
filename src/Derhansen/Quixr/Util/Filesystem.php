@@ -69,4 +69,17 @@ class Filesystem {
 		return json_decode($content, TRUE);
 	}
 
+	/**
+	 * Saves the given data as JSON to file
+	 *
+	 * @todo Use JSON_PRETTY_PRINT if PHP >= 5.4
+	 * @param string $file
+	 * @param mixed $data
+	 * @return void
+	 */
+	public function writeDataAsJSON($file, $data) {
+		$handle = fopen($file, 'w');
+		fwrite($handle, json_encode($data));
+		fclose($handle);
+	}
 }
