@@ -71,14 +71,10 @@ class TrafficCommand extends Command {
 				// @todo print error about missing logfile
 			}
 
-			// @todo write new target file after each iteration
-			// @todo Out into function in Derhansen\Quixr\Util\Filesystem
-			$handle = fopen($targetFile, 'w');
-			fwrite($handle, json_encode($trafficData)); // Use JSON_PRETTY_PRINT if PHP >= 5.4
-			fclose($handle);
+			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $trafficData);
 		}
 
-		// Use below with: ./bin/quixr analyze:traffic /var/www/ logfiles access_log traffic.json common
+		// Use below with: ./bin/quixr analyze:traffic /var/www/ logfiles access_log quixr.json common
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', $vhostData));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400, 10519961, 'dc0158f34f1135bfa6cefb72bcc7b4e4'));
 		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400));
