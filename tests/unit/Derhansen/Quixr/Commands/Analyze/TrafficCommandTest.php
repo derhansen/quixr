@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\unit\Derhansen\Quixr\Commands;
+namespace tests\unit\Derhansen\Quixr\Commands\Analyze;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -10,7 +10,7 @@ use Derhansen\Quixr\Commands\Analyze\TrafficCommand;
 use Derhansen\Quixr\Util\Returncodes;
 use org\bovigo\vfs\vfsStream;
 
-require_once __DIR__ . '/../../../bootstrap.php';
+require_once __DIR__ . '/../../../../bootstrap.php';
 
 class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 
