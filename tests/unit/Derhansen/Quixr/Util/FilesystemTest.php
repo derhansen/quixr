@@ -175,18 +175,4 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 		file_put_contents($file, 'Invalid JSON');
 		$this->filesysten->getTargetJSONAsArray(vfsStream::url('var/target.json'));
 	}
-
-	/**
-	 * @test
-	 * @return void
-	 */
-	public function writeDataAsJSONSavesToFileTest() {
-		$root = vfsStream::setup('var');
-		vfsStream::newFile('test.json')->at($root)->setContent('');
-		$data = array('test1', 'test2', 'test3');
-		$this->filesysten->writeDataAsJSON(vfsStream::url('var/test.json'), $data);
-		$expected = '["test1","test2","test3"]';
-		$actual = file_get_contents(vfsStream::url('var/test.json'));
-		$this->assertSame($expected, $actual);
-	}
 }
