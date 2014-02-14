@@ -74,13 +74,7 @@ class TrafficCommand extends Command {
 			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $trafficData);
 		}
 
-		// Use below with: ./bin/quixr analyze:traffic /var/www/ logfiles access_log quixr.json common
-		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', $vhostData));
-		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400, 10519961, 'dc0158f34f1135bfa6cefb72bcc7b4e4'));
-		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400));
-		//print_r($this->getQuixr()->getLoganalyzer()->analyzeLogfile('/var/www/test1.typo3.local/logfiles/access_log', 'vhost1', 1388534400));
-
-		$output->writeln('Do something here ' . $this->getQuixr()->getLoganalyzer()->dummy());
+		return Returncodes::SUCCESS;
 	}
 
 }
