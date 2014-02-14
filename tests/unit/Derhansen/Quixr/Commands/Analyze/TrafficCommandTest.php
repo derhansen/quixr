@@ -59,16 +59,40 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Copies logfiles from fixtures to virtual directory structure
+	 * Copies logfiles with initial data from fixtures to virtual directory structure
 	 *
 	 * @param string $format The format: common or combined
 	 * @return void
 	 */
-	private function copyLogfiles($format) {
+	private function copyInitialLogfiles($format) {
 		for ($i=1; $i <= 3; $i++) {
 			copy (__DIR__ . '/../../Fixtures/' . $format . '.log',
 				vfsStream::url('var/www/vhost' .  $i . '/logfiles/access.log'));
 		}
+	}
+
+	/**
+	 * Copies logfiles with new data from fixtures to virtual directory structure
+	 *
+	 * @param string $format The format: common or combined
+	 * @return void
+	 */
+	private function copyNewLogfiles($format) {
+		for ($i=1; $i <= 3; $i++) {
+			copy (__DIR__ . '/../../Fixtures/new_' . $format . '.log',
+				vfsStream::url('var/www/vhost' .  $i . '/logfiles/access.log'));
+		}
+	}
+
+	/**
+	 * Copies initial JSON Data to the target file for the given format
+	 *
+	 * @param string $file
+	 * @param string $format
+	 * @return void
+	 */
+	private function copyInitialJSONDataToTargetFile($file, $format) {
+		copy (__DIR__ . '/../../Fixtures/result_init_' . $format . '.json', $file);
 	}
 
 	/**
@@ -131,7 +155,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 */
 	public function commandExecutesSuccessfullTest() {
-		$this->copyLogfiles('combined');
+		$this->copyInitialLogfiles('combined');
 		$this->commandTester->execute(
 			array(
 				'command' => $this->command->getName(),
@@ -150,7 +174,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 */
 	public function initialTrafficDataGetsWrittenForCombinedLogfilesTest() {
-		$this->copyLogfiles('combined');
+		$this->copyInitialLogfiles('combined');
 		$this->commandTester->execute(
 			array(
 				'command' => $this->command->getName(),
@@ -171,7 +195,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 */
 	public function initialTrafficDataGetsWrittenForCommonLogfilesTest() {
-		$this->copyLogfiles('common');
+		$this->copyInitialLogfiles('common');
 		$this->commandTester->execute(
 			array(
 				'command' => $this->command->getName(),
@@ -183,6 +207,51 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 			)
 		);
 		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_init_common.json');
+		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
+		$this->assertSame($expected, $actual);
+	}
+
+	/**
+	 * Test if new traffic data gets merged for combined logfiles
+	 *
+	 * @test
+	 */
+	public function newTrafficDataGetsMergedForCombinedLogfilesTest() {
+		$this->copyNewLogfiles('combined');
+		$this->copyInitialJSONDataToTargetFile(vfsStream::url('var/www/quixr.json'), 'combined');
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'logfile-path' => 'logfiles',
+				'logfile' => 'access.log',
+				'target-file' => vfsStream::url('var/www/quixr.json')
+			)
+		);
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_new_combined.json');
+		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
+		$this->assertSame($expected, $actual);
+	}
+
+	/**
+	 * Test if new traffic data gets merged for common logfiles
+	 *
+	 * @test
+	 */
+	public function newTrafficDataGetsMergedForCommonLogfilesTest() {
+		$this->copyNewLogfiles('common');
+		$this->copyInitialJSONDataToTargetFile(vfsStream::url('var/www/quixr.json'), 'common');
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'logfile-path' => 'logfiles',
+				'logfile' => 'access.log',
+				'target-file' => vfsStream::url('var/www/quixr.json'),
+				'logformat' => 'common'
+			)
+		);
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_new_common.json');
 		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
 		$this->assertSame($expected, $actual);
 	}
