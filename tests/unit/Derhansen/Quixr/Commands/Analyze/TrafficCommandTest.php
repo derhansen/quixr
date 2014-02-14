@@ -66,7 +66,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 */
 	private function copyInitialLogfiles($format) {
 		for ($i=1; $i <= 3; $i++) {
-			copy (__DIR__ . '/../../Fixtures/' . $format . '.log',
+			copy (__DIR__ . '/../../Fixtures/Logfiles/' . $format . '.log',
 				vfsStream::url('var/www/vhost' .  $i . '/logfiles/access.log'));
 		}
 	}
@@ -79,7 +79,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 */
 	private function copyNewLogfiles($format) {
 		for ($i=1; $i <= 3; $i++) {
-			copy (__DIR__ . '/../../Fixtures/new_' . $format . '.log',
+			copy (__DIR__ . '/../../Fixtures/Logfiles/new_' . $format . '.log',
 				vfsStream::url('var/www/vhost' .  $i . '/logfiles/access.log'));
 		}
 	}
@@ -92,7 +92,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	private function copyInitialJSONDataToTargetFile($file, $format) {
-		copy (__DIR__ . '/../../Fixtures/result_init_' . $format . '.json', $file);
+		copy (__DIR__ . '/../../Fixtures/Json/Traffic/result_init_' . $format . '.json', $file);
 	}
 
 	/**
@@ -184,7 +184,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 				'target-file' => vfsStream::url('var/www/quixr.json')
 			)
 		);
-		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_init_combined.json');
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/Json/Traffic/result_init_combined.json');
 		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
 		$this->assertSame($expected, $actual);
 	}
@@ -206,7 +206,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 				'logformat' => 'common'
 			)
 		);
-		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_init_common.json');
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/Json/Traffic/result_init_common.json');
 		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
 		$this->assertSame($expected, $actual);
 	}
@@ -228,7 +228,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 				'target-file' => vfsStream::url('var/www/quixr.json')
 			)
 		);
-		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_new_combined.json');
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/Json/Traffic/result_new_combined.json');
 		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
 		$this->assertSame($expected, $actual);
 	}
@@ -251,7 +251,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 				'logformat' => 'common'
 			)
 		);
-		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_new_common.json');
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/Json/Traffic/result_new_common.json');
 		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
 		$this->assertSame($expected, $actual);
 	}

@@ -129,7 +129,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function analyzeLogfileReturnsExceptionIfLogFormatIsWrong() {
 		$vhostData = $this->getDefaultVhostData();
-		$this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/common.log', $vhostData);
+		$this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/common.log', $vhostData);
 	}
 
 	/**
@@ -139,7 +139,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCommonLogfileWithNoHistoricalData() {
 		$vhostData = $this->getDefaultVhostData();
 		$this->loganalyzer->setLogformat('common');
-		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/common.log', $vhostData);
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/common.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
@@ -165,7 +165,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCombinedLogfileWithNoHistoricalData() {
 		$vhostData = $this->getDefaultVhostData();
-		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/combined.log', $vhostData);
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/combined.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
@@ -194,7 +194,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 		$vhostData['vhost1']['traffic']['2014']['02']['01'] = 1024;
 		$vhostData['vhost1']['traffic']['2014']['02']['02'] = 1024;
 		$this->loganalyzer->setLogformat('common');
-		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/common.log', $vhostData);
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/common.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
@@ -223,7 +223,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 		$vhostData = $this->getDefaultVhostData();
 		$vhostData['vhost1']['traffic']['2014']['02']['01'] = 1024;
 		$vhostData['vhost1']['traffic']['2014']['02']['02'] = 1024;
-		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/combined.log', $vhostData);
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/combined.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
@@ -252,7 +252,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 		$vhostData = $this->getDefaultVhostData();
 		$vhostData['vhost1']['quixr']['traffic_lasttstamp'] = 1391342340;
 		$this->loganalyzer->setLogformat('common');
-		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/common.log', $vhostData);
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/common.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
@@ -279,7 +279,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCombinedLogfileWithLasttstamp() {
 		$vhostData = $this->getDefaultVhostData();
 		$vhostData['vhost1']['quixr']['traffic_lasttstamp'] = 1391342340;
-		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/combined.log', $vhostData);
+		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/combined.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
