@@ -37,9 +37,15 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 		$structure = array(
 			'www' => array(
-				'vhost1' => array(),
-				'vhost2' => array(),
-				'vhost3' => array(),
+				'vhost1' => array(
+					'logfiles' => array()
+				),
+				'vhost2' => array(
+					'logfiles' => array()
+				),
+				'vhost3' => array(
+					'logfiles' => array()
+				),
 			),
 			'empty' => array()
 		);
@@ -52,24 +58,18 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 		$this->commandTester = new CommandTester($this->command);
 	}
 
-// @todo FIXME
-//	/**
-//	 * Test if command returns expected string
-//	 *
-//	 * @test
-//	 */
-//	public function commandExecutesSuccessfullTest() {
-//		$this->commandTester->execute(
-//			array(
-//				'command' => $this->command->getName(),
-//				'vhost-path' => vfsStream::url('var/www/'),
-//				'logfile-path' => 'logfiles',
-//				'logfile' => 'access.log',
-//				'target-file' => 'traffic.json'
-//			)
-//		);
-//		$this->assertRegExp('/^Do something here From Helper$/', $this->commandTester->getDisplay());
-//	}
+	/**
+	 * Copies logfiles from fixtures to virtual directory structure
+	 *
+	 * @param string $format The format: common or combined
+	 * @return void
+	 */
+	private function copyLogfiles($format) {
+		for ($i=1; $i <= 3; $i++) {
+			copy (__DIR__ . '/../../Fixtures/' . $format . '.log',
+				vfsStream::url('var/www/vhost' .  $i . '/logfiles/access.log'));
+		}
+	}
 
 	/**
 	 * Test if command returns expected returncode if vhost-path is not found
@@ -124,4 +124,67 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 		);
 		$this->assertEquals(Returncodes::TARGET_FILE_NOT_WRITEABLE, $this->commandTester->getStatusCode());
 	}
+
+	/**
+	 * Test if command executes successfull
+	 *
+	 * @test
+	 */
+	public function commandExecutesSuccessfullTest() {
+		$this->copyLogfiles('combined');
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'logfile-path' => 'logfiles',
+				'logfile' => 'access.log',
+				'target-file' => vfsStream::url('var/www/quixr.json')
+			)
+		);
+		$this->assertEquals(Returncodes::SUCCESS, $this->commandTester->getStatusCode());
+	}
+
+	/**
+	 * Test if resulting JSON file contains expected data for combined logfiles
+	 *
+	 * @test
+	 */
+	public function initialTrafficDataGetsWrittenForCombinedLogfilesTest() {
+		$this->copyLogfiles('combined');
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'logfile-path' => 'logfiles',
+				'logfile' => 'access.log',
+				'target-file' => vfsStream::url('var/www/quixr.json')
+			)
+		);
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_init_combined.json');
+		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
+		$this->assertSame($expected, $actual);
+	}
+
+	/**
+	 * Test if resulting JSON file contains expected data for common logfiles
+	 *
+	 * @test
+	 */
+	public function initialTrafficDataGetsWrittenForCommonLogfilesTest() {
+		$this->copyLogfiles('common');
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'logfile-path' => 'logfiles',
+				'logfile' => 'access.log',
+				'target-file' => vfsStream::url('var/www/quixr.json'),
+				'logformat' => 'common'
+			)
+		);
+		$expected = file_get_contents(__DIR__ . '/../../Fixtures/result_init_common.json');
+		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
+		$this->assertSame($expected, $actual);
+	}
+
 }
