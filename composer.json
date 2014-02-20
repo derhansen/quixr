@@ -13,7 +13,8 @@
     ],
     "require": {
         "symfony/console": "2.4.*",
-        "kassner/log-parser": "dev-master"
+        "kassner/log-parser": "dev-master",
+        "herrera-io/phar-update": "2.*"
     },
     "require-dev": {
         "mikey179/vfsStream": "1.2.*"
