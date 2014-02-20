@@ -15,11 +15,17 @@ class Application extends BaseApplication {
 	 */
 	private $quixr;
 
+	/**
+	 * Runs the application
+	 *
+	 * @param InputInterface $input
+	 * @param OutputInterface $output
+	 * @return int
+	 */
 	public function doRun(InputInterface $input, OutputInterface $output) {
 		$this->quixr = $this->getQuixr();
 		return parent::doRun($input, $output);
 	}
-
 
 	/**
 	 * Returns a new quixr instance
