@@ -7,7 +7,7 @@ set_time_limit(0);
 
 use Derhansen\Quixr\Console\Application;
 
-$app = new Application('Quixr', '0.0.0');
+$app = new Application('Quixr', '@package_version@');
 $app->addCommands(array(
 	new Derhansen\Quixr\Commands\Analyze\TrafficCommand()
 ));
