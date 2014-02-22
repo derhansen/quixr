@@ -4,7 +4,6 @@ namespace tests\unit\Derhansen\Quixr\Commands\Analyze;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-
 use Derhansen\Quixr\Console\Application;
 use Derhansen\Quixr\Commands\Analyze\TrafficCommand;
 use Derhansen\Quixr\Util\Returncodes;

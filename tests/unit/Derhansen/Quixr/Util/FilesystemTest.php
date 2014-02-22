@@ -4,7 +4,6 @@ namespace tests\unit\Derhansen\Quixr\Helper;
 
 use Derhansen\Quixr\Util\Filesystem;
 use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\visitor\vfsStreamPrintVisitor;
 
 class FilesystemTest extends \PHPUnit_Framework_TestCase {
 

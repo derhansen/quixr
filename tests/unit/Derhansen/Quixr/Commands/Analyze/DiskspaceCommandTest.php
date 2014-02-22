@@ -2,7 +2,6 @@
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-
 use Derhansen\Quixr\Console\Application;
 use Derhansen\Quixr\Commands\Analyze\DiskspaceCommand;
 use Derhansen\Quixr\Util\Returncodes;

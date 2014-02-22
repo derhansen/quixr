@@ -21,7 +21,7 @@ class Diskspaceanalyzer {
 	/**
 	 * Returns the directory size in bytes
 	 *
-	 * @param $directory
+	 * @param string $directory
 	 * @return int
 	 */
 	public function getDirectorySize($directory) {

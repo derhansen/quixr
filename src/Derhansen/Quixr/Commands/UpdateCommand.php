@@ -33,7 +33,7 @@ class UpdateCommand extends Command {
 	 *
 	 * @param InputInterface $input
 	 * @param OutputInterface $output
-	 * @return bool|int|null
+	 * @return boolean|null
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$output->writeln('Looking for updates...');
