@@ -335,12 +335,4 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	/**
-	 * @test
-	 * @return void
-	 */
-	public function dummyTest() {
-		$this->assertEquals('From Helper', $this->loganalyzer->dummy());
-	}
-
 }

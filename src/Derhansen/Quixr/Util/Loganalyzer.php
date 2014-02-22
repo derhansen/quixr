@@ -141,13 +141,4 @@ class Loganalyzer {
 		return $vhostData;
 	}
 
-	/**
-	 * Dummy method
-	 *
-	 * @return string
-	 */
-	public function dummy() {
-		return 'From Helper';
-	}
-
 }
