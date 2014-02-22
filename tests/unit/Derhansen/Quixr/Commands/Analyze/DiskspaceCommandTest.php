@@ -108,11 +108,15 @@ class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 	}
 
  	/**
-	 * Test if command returns expected string
-	 *
 	 * @test
 	 */
 	public function commandExecutesSuccessfullTest() {
+		// Copy dummy files
+		for ($i = 1; $i <= 3; $i++) {
+			copy (__DIR__ . '/../../Fixtures/Diskspace/1k.txt',
+				vfsStream::url('var/www/vhost' . $i . '/htdocs/testfile.txt'));
+		}
+
 		$this->commandTester->execute(
 			array(
 				'command' => $this->command->getName(),
@@ -121,7 +125,75 @@ class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 				'target-file' => vfsStream::url('var/www/quixr.json')
 			)
 		);
-		$this->assertRegExp('/^Not implemented yet$/', $this->commandTester->getDisplay());
+		$this->assertEquals(Returncodes::SUCCESS, $this->commandTester->getStatusCode());
 	}
 
+	/**
+	 * @test
+	 */
+	public function initialDiskspaceDataWritesExpectedJson() {
+		// Copy dummy files
+		for ($i = 1; $i <= 3; $i++) {
+			copy (__DIR__ . '/../../Fixtures/Diskspace/1k.txt',
+				vfsStream::url('var/www/vhost' . $i . '/htdocs/testfile.txt'));
+		}
+
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'document-root' => 'htdocs',
+				'target-file' => vfsStream::url('var/www/quixr.json')
+			)
+		);
+		$expected = array(
+			'vhost1' => array(
+				'traffic' => array(),
+				'diskspace' => array(
+					date('Y') => array(
+						date('n') => array(
+							date('j') => 1024
+						)
+					)
+				),
+				'quixr' => array(
+					'traffic_lasttstamp' => 0,
+					'traffic_lastoffset' => -1,
+					'traffic_lastlinehash' => ''
+				)
+			),
+			'vhost2' => array(
+				'traffic' => array(),
+				'diskspace' => array(
+					date('Y') => array(
+						date('n') => array(
+							date('j') => 1024
+						)
+					)
+				),
+				'quixr' => array(
+					'traffic_lasttstamp' => 0,
+					'traffic_lastoffset' => -1,
+					'traffic_lastlinehash' => ''
+				)
+			),
+			'vhost3' => array(
+				'traffic' => array(),
+				'diskspace' => array(
+					date('Y') => array(
+						date('n') => array(
+							date('j') => 1024
+						)
+					)
+				),
+				'quixr' => array(
+					'traffic_lasttstamp' => 0,
+					'traffic_lastoffset' => -1,
+					'traffic_lastlinehash' => ''
+				)
+			)
+		);
+		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
+		$this->assertEquals(json_encode($expected), $actual);
+	}
 }

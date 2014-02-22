@@ -51,13 +51,12 @@ class DiskspaceCommand extends Command {
 
 		foreach ($dirs as $vhost) {
 			$currentDiskspace = array();
-			$documentRoot = $input->getArgument('vhost-path') . $vhost;
+			$documentRoot = $input->getArgument('vhost-path') . $vhost . '/' . $input->getArgument('document-root');
 			if (is_dir($documentRoot)) {
 				if (isset($analysisData[$vhost])) {
 					$currentDiskspace[$vhost] = $analysisData[$vhost];
 				} else {
-					// @todo Use new shared function
-					$currentDiskspace = array($vhost => array());
+					$currentDiskspace = $this->getQuixr()->getVhostdata()->getEmptyVhostData($vhost);
 				}
 				$newData = $this->getQuixr()->getDiskspaceanalyzer()->analyzeDiskspace($documentRoot, $currentDiskspace);
 				$analysisData[$vhost] = $newData[$vhost];
@@ -68,7 +67,6 @@ class DiskspaceCommand extends Command {
 			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $analysisData);
 		}
 
-		$output->writeln('Not implemented yet');
 		return Returncodes::SUCCESS;
 	}
 
