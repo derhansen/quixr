@@ -100,14 +100,14 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 *
 	 * @test
 	 */
-	public function vhostpPathNotFoundTest() {
+	public function vhostPathNotFoundTest() {
 		$this->commandTester->execute(
 			array(
 				'command' => $this->command->getName(),
 				'vhost-path' => vfsStream::url('var/ww/'),
 				'logfile-path' => 'logfiles',
 				'logfile' => 'access.log',
-				'target-file' => 'traffic.json'
+				'target-file' => 'quixr.json'
 			)
 		);
 		$this->assertEquals(Returncodes::PATH_NOT_FOUND_OR_EMPTY, $this->commandTester->getStatusCode());
@@ -118,14 +118,14 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 	 *
 	 * @test
 	 */
-	public function vhostpPathEmptyTest() {
+	public function vhostPathEmptyTest() {
 		$this->commandTester->execute(
 			array(
 				'command' => $this->command->getName(),
 				'vhost-path' => vfsStream::url('var/empty/'),
 				'logfile-path' => 'logfiles',
 				'logfile' => 'access.log',
-				'target-file' => 'traffic.json'
+				'target-file' => 'quixr.json'
 			)
 		);
 		$this->assertEquals(Returncodes::PATH_NOT_FOUND_OR_EMPTY, $this->commandTester->getStatusCode());

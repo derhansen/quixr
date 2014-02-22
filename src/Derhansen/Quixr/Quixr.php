@@ -3,6 +3,7 @@
 namespace Derhansen\Quixr;
 
 use Derhansen\Quixr\Util\Loganalyzer;
+use Derhansen\Quixr\Util\Diskspaceanalyzer;
 use Derhansen\Quixr\Util\Filesystem;
 
 class Quixr {
@@ -11,6 +12,11 @@ class Quixr {
 	 * @var Loganalyzer;
 	 */
 	private $loganalyzer;
+
+	/**
+	 * @var Diskspaceanalyzer
+	 */
+	private $diskspaceanalyzer;
 
 	/**
 	 * @var Filesystem
@@ -22,6 +28,7 @@ class Quixr {
 	 */
 	function __construct() {
 		$this->loganalyzer = new Loganalyzer();
+		$this->diskspaceanalyzer = new Diskspaceanalyzer();
 		$this->filesystem = new Filesystem();
 	}
 
@@ -30,6 +37,13 @@ class Quixr {
 	 */
 	public function getLoganalyzer() {
 		return $this->loganalyzer;
+	}
+
+	/**
+	 * @return \Derhansen\Quixr\Util\Diskspaceanalyzer
+	 */
+	public function getDiskspaceanalyzer() {
+		return $this->diskspaceanalyzer;
 	}
 
 	/**

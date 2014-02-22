@@ -3,14 +3,14 @@
 [![Build Status](https://travis-ci.org/derhansen/quixr.png?branch=develop)](https://travis-ci.org/derhansen/quixr)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/derhansen/quixr/badges/quality-score.png?s=11465c0dd3d311aee21755773ce8d6cdee6b6a6f)](https://scrutinizer-ci.com/g/derhansen/quixr/)
 
-Quixr is a command line tool which can analyze traffic and diskspace for Apache2 virtual hosts. Quixr outputs its
+Quixr is a command line tool which can analyze traffic and used diskspace for Apache2 virtual hosts. Quixr outputs its
 analysis data into a JSON file.
 
 Quixr is still under **development**, so some major features are missing and expect things to change during development.
 
 ##Todos
 
-* Diskspace analysis
+* Vhost diskspace analysis
 * Quota reporting
 * Webtool for data visualization
 

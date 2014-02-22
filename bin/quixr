@@ -10,6 +10,7 @@ use Derhansen\Quixr\Console\Application;
 $app = new Application('Quixr', '@package_version@');
 $app->addCommands(array(
 	new Derhansen\Quixr\Commands\Analyze\TrafficCommand(),
+	new Derhansen\Quixr\Commands\Analyze\DiskspaceCommand(),
 	new Derhansen\Quixr\Commands\UpdateCommand()
 ));
 $app->run();

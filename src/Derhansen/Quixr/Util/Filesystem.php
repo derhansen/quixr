@@ -82,4 +82,14 @@ class Filesystem {
 		fwrite($handle, json_encode($data));
 		fclose($handle);
 	}
+
+	/**
+	 * Returns the size of the given directory in bytes
+	 *
+	 * @param string $dir
+	 * @return int
+	 */
+	public function getDirsize($dir) {
+		return 0;
+	}
 }
