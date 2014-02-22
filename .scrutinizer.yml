@@ -12,12 +12,12 @@ tools:
     php_code_sniffer:
         enabled: true
         config:
-            standard: PSR0
+            standard: PSR1
 
     php_cs_fixer:
         enabled: true
         config:
-          level: psr0
+          level: psr1
 
     php_hhvm:
         enabled: true
