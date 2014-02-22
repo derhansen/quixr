@@ -144,8 +144,8 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 			'vhost1' => array(
 				'traffic' => array(
 					'2014' => array(
-						'02' => array(
-							'02' => 12288
+						'2' => array(
+							'2' => 12288
 						)
 					)
 				),
@@ -170,8 +170,8 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 			'vhost1' => array(
 				'traffic' => array(
 					'2014' => array(
-						'02' => array(
-							'02' => 12288
+						'2' => array(
+							'2' => 12288
 						)
 					)
 				),
@@ -191,17 +191,17 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCommonLogfileWithHistoricalData() {
 		$vhostData = $this->getDefaultVhostData();
-		$vhostData['vhost1']['traffic']['2014']['02']['01'] = 1024;
-		$vhostData['vhost1']['traffic']['2014']['02']['02'] = 1024;
+		$vhostData['vhost1']['traffic']['2014']['2']['1'] = 1024;
+		$vhostData['vhost1']['traffic']['2014']['2']['2'] = 1024;
 		$this->loganalyzer->setLogformat('common');
 		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/common.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
 					'2014' => array(
-						'02' => array(
-							'01' => 1024,
-							'02' => 13312
+						'2' => array(
+							'1' => 1024,
+							'2' => 13312
 						)
 					)
 				),
@@ -221,16 +221,16 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCombinedLogfileWithHistoricalData() {
 		$vhostData = $this->getDefaultVhostData();
-		$vhostData['vhost1']['traffic']['2014']['02']['01'] = 1024;
-		$vhostData['vhost1']['traffic']['2014']['02']['02'] = 1024;
+		$vhostData['vhost1']['traffic']['2014']['2']['1'] = 1024;
+		$vhostData['vhost1']['traffic']['2014']['2']['2'] = 1024;
 		$result = $this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/combined.log', $vhostData);
 		$expected = array(
 			'vhost1' => array(
 				'traffic' => array(
 					'2014' => array(
-						'02' => array(
-							'01' => 1024,
-							'02' => 13312
+						'2' => array(
+							'1' => 1024,
+							'2' => 13312
 						)
 					)
 				),
@@ -257,8 +257,8 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 			'vhost1' => array(
 				'traffic' => array(
 					'2014' => array(
-						'02' => array(
-							'02' => 7168
+						'2' => array(
+							'2' => 7168
 						)
 					)
 				),
@@ -284,8 +284,8 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 			'vhost1' => array(
 				'traffic' => array(
 					'2014' => array(
-						'02' => array(
-							'02' => 7168
+						'2' => array(
+							'2' => 7168
 						)
 					)
 				),

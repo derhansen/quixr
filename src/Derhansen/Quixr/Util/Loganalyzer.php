@@ -64,10 +64,10 @@ class Loganalyzer {
 					$previousOffset = $lastOffset;
 					$lastOffset = ftell($handle);
 
-					if (isset($vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)])) {
-						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] += $lineObj->sentBytes;
+					if (isset($vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('n', $lineObj->stamp)][date('j', $lineObj->stamp)])) {
+						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('n', $lineObj->stamp)][date('j', $lineObj->stamp)] += $lineObj->sentBytes;
 					} else {
-						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('m', $lineObj->stamp)][date('d', $lineObj->stamp)] = $lineObj->sentBytes;
+						$vhostData[$vhostname]['traffic'][date('Y', $lineObj->stamp)][date('n', $lineObj->stamp)][date('j', $lineObj->stamp)] = $lineObj->sentBytes;
 					}
 					$vhostData[$vhostname]['quixr']['traffic_lasttstamp'] = $lineObj->stamp;
 					$vhostData[$vhostname]['quixr']['traffic_lastoffset'] = $previousOffset;
