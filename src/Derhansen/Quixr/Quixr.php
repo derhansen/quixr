@@ -5,6 +5,7 @@ namespace Derhansen\Quixr;
 use Derhansen\Quixr\Util\Loganalyzer;
 use Derhansen\Quixr\Util\Diskspaceanalyzer;
 use Derhansen\Quixr\Util\Filesystem;
+use Derhansen\Quixr\Util\VhostData;
 
 class Quixr {
 
@@ -19,6 +20,11 @@ class Quixr {
 	private $diskspaceanalyzer;
 
 	/**
+	 * @var VhostData::
+	 */
+	private $vhostdata;
+
+	/**
 	 * @var Filesystem
 	 */
 	private $filesystem;
@@ -29,6 +35,7 @@ class Quixr {
 	function __construct() {
 		$this->loganalyzer = new Loganalyzer();
 		$this->diskspaceanalyzer = new Diskspaceanalyzer();
+		$this->vhostdata = new VhostData();
 		$this->filesystem = new Filesystem();
 	}
 
@@ -44,6 +51,13 @@ class Quixr {
 	 */
 	public function getDiskspaceanalyzer() {
 		return $this->diskspaceanalyzer;
+	}
+
+	/**
+	 * @return \Derhansen\Quixr\Util\VhostData
+	 */
+	public function getVhostdata() {
+		return $this->vhostdata;
 	}
 
 	/**

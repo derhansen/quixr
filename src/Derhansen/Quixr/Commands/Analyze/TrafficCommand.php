@@ -63,7 +63,7 @@ class TrafficCommand extends Command {
 				if (isset($historicalData[$vhost])) {
 					$currentTraffic[$vhost] = $historicalData[$vhost];
 				} else {
-					$currentTraffic = $this->getQuixr()->getLoganalyzer()->getEmptyVhostData($vhost);
+					$currentTraffic = $this->getQuixr()->getVhostdata()->getEmptyVhostData($vhost);
 				}
 				$newData = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
 				$historicalData[$vhost] = $newData[$vhost];
