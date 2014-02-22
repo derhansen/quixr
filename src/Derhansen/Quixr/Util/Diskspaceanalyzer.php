@@ -12,6 +12,7 @@ class Diskspaceanalyzer {
 	 * @return array
 	 */
 	public function analyzeDiskspace($documentRoot, $vhostData) {
+		$vhostname = current(array_keys($vhostData));
 		return $vhostData;
 	}
 

@@ -7,7 +7,7 @@ use Derhansen\Quixr\Util\VhostData;
 class VhostDataTest extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * @var VhostData::
+	 * @var VhostData
 	 */
 	protected $vhostdata;
 
