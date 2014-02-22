@@ -52,7 +52,7 @@ class TrafficCommand extends Command {
 
 		// Get historical data from target JSON file
 		// @todo - Catch exception for invalid JSON data
-		$trafficData = $this->getQuixr()->getFilesystem()->getTargetJSONAsArray($targetFile);
+		$historicalData = $this->getQuixr()->getFilesystem()->getTargetJSONAsArray($targetFile);
 
 		foreach ($dirs as $vhost) {
 			$logfile = $input->getArgument('vhost-path') . $vhost . '/' .$input->getArgument('logfile-path') .
@@ -60,18 +60,18 @@ class TrafficCommand extends Command {
 
 			$currentTraffic = array();
 			if (file_exists($logfile)) {
-				if (isset($trafficData[$vhost])) {
-					$currentTraffic[$vhost] = $trafficData[$vhost];
+				if (isset($historicalData[$vhost])) {
+					$currentTraffic[$vhost] = $historicalData[$vhost];
 				} else {
 					$currentTraffic = $this->getQuixr()->getLoganalyzer()->getEmptyVhostData($vhost);
 				}
 				$newData = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
-				$trafficData[$vhost] = $newData[$vhost];
+				$historicalData[$vhost] = $newData[$vhost];
 			} else {
 				// @todo print error about missing logfile
 			}
 
-			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $trafficData);
+			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $historicalData);
 		}
 
 		return Returncodes::SUCCESS;
