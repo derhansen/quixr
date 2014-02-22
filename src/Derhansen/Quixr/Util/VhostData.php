@@ -18,8 +18,7 @@ class VhostData {
 				'quixr' => array(
 					'traffic_lasttstamp' => 0,
 					'traffic_lastoffset' => -1,
-					'traffic_lastlinehash' => '',
-					'diskspace_lasttstamp' => 0
+					'traffic_lastlinehash' => ''
 				),
 			)
 		);
