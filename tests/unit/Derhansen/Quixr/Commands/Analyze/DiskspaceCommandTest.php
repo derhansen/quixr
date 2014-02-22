@@ -118,7 +118,7 @@ class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 				'command' => $this->command->getName(),
 				'vhost-path' => vfsStream::url('var/www/'),
 				'document-root' => 'htdocs',
-				'target-file' => 'quixr.json'
+				'target-file' => vfsStream::url('var/www/quixr.json')
 			)
 		);
 		$this->assertRegExp('/^Not implemented yet$/', $this->commandTester->getDisplay());
