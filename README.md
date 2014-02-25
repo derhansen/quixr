@@ -33,6 +33,22 @@ In order to use Quixr the following requirements must be met
 The Quixr logfile analysis checks the logfile for each virtual host and accumulates the daily traffic. If the target
 JSON file already contains historical data, new traffic data gets merged.
 
+###Usage
+
+```
+Usage:
+ analyze:traffic vhost-path logfile-path logfile target-file [logformat]
+
+Arguments:
+ vhost-path            Path to virtial hosts (e.g. /var/www/)
+ logfile-path          Path to logfiles of each virtual host (e.g. logs)
+ logfile               Logfile (e.g. access.log)
+ target-file           Target JSON file for analysis results (e.g. quixr.json
+ logformat             Apache2 Logfile format. Allowed values: common, combined (default: "combined")
+```
+
+###Example
+
 ``` sh
 $ quixr analyze:traffic /var/www/ logfiles access_log /some/path/quixr.json common
 ```
@@ -41,6 +57,20 @@ $ quixr analyze:traffic /var/www/ logfiles access_log /some/path/quixr.json comm
 
 The Quixr diskspace analysis checks the given document root for the virtual host and created a new entry in the target
 JSON file for the current day. If the JSON file already contains historical data, new diskspace data gets appended.
+
+###Usage
+
+```
+Usage:
+ analyze:diskspace vhost-path document-root target-file
+
+Arguments:
+ vhost-path            Path to virtial hosts (e.g. /var/www/)
+ document-root         Path to document root of each virtual host (e.g. htdocs)
+ target-file           Target JSON file for analysis results (e.g. quixr.json
+```
+
+###Example
 
 ``` sh
 $ quixr analyze:diskspace /var/www/ htdocs /some/path/quixr.json
