@@ -4,5 +4,11 @@
         "sha1": "666d1920ad1a7795d1bd37cde5f8b77e76fe5d51",
         "url": "http://derhansen.github.io/quixr/download/quixr-0.1.0.phar",
         "version": "0.1.0"
+    },
+    {
+        "name": "quixr.phar",
+        "sha1": "a00c9ba4586484f3b8dd0e969dc63a634a71bf6c",
+        "url": "http://derhansen.github.io/quixr/download/quixr-0.2.0.phar",
+        "version": "0.2.0"
     }
 ]
