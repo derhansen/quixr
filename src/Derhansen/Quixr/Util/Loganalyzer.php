@@ -55,7 +55,7 @@ class Loganalyzer {
 		$handle = $this->setHandleToOffset($handle, $offset, $comparehash);
 
 		while (!feof($handle)) {
-			$rawline = fgets($handle, 4096);
+			$rawline = fgets($handle, 8190);
 			// Ignore blank lines
 			if ($rawline == '') continue;
 			try {
