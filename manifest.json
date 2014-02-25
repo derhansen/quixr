@@ -16,6 +16,12 @@
         "sha1": "44431d463ffcf9f100e72c383c89264fafca66fa",
         "url": "http://derhansen.github.io/quixr/download/quixr-0.2.1.phar",
         "version": "0.2.1"
-}
+    },
+    {
+        "name": "quixr.phar",
+        "sha1": "f32a17e59b8bd9cb8e5c9ad36abc95ecf90bfeeb",
+        "url": "http://derhansen.github.io/quixr/download/quixr-0.2.2.phar",
+        "version": "0.2.2"
+    }
 
 ]
