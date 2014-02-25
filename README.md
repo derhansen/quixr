@@ -40,11 +40,11 @@ Usage:
  analyze:traffic vhost-path logfile-path logfile target-file [logformat]
 
 Arguments:
- vhost-path            Path to virtial hosts (e.g. /var/www/)
- logfile-path          Path to logfiles of each virtual host (e.g. logs)
- logfile               Logfile (e.g. access.log)
- target-file           Target JSON file for analysis results (e.g. quixr.json
- logformat             Apache2 Logfile format. Allowed values: common, combined (default: "combined")
+ vhost-path         Path to virtial hosts (e.g. /var/www/)
+ logfile-path       Path to logfiles of each virtual host (e.g. logs)
+ logfile            Logfile (e.g. access.log)
+ target-file        Target JSON file for analysis results (e.g. quixr.json
+ logformat          Apache2 Logfile format. Allowed values: common, combined (default: "combined")
 ```
 
 ###Example
@@ -65,9 +65,9 @@ Usage:
  analyze:diskspace vhost-path document-root target-file
 
 Arguments:
- vhost-path            Path to virtial hosts (e.g. /var/www/)
- document-root         Path to document root of each virtual host (e.g. htdocs)
- target-file           Target JSON file for analysis results (e.g. quixr.json
+ vhost-path         Path to virtial hosts (e.g. /var/www/)
+ document-root      Path to document root of each virtual host (e.g. htdocs)
+ target-file        Target JSON file for analysis results (e.g. quixr.json
 ```
 
 ###Example
