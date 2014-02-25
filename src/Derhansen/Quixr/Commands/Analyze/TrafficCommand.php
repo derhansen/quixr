@@ -55,7 +55,7 @@ class TrafficCommand extends Command {
 		$historicalData = $this->getQuixr()->getFilesystem()->getTargetJSONAsArray($targetFile);
 
 		foreach ($dirs as $vhost) {
-			$logfile = $input->getArgument('vhost-path') . $vhost . '/' .$input->getArgument('logfile-path') .
+			$logfile = $input->getArgument('vhost-path') . $vhost . '/' . $input->getArgument('logfile-path') .
 				'/' . $input->getArgument('logfile');
 
 			$currentTraffic = array();
@@ -68,7 +68,8 @@ class TrafficCommand extends Command {
 				$newData = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
 				$historicalData[$vhost] = $newData[$vhost];
 			} else {
-				// @todo print error about missing logfile
+				$output->writeln('<error>Directory is missing: ' . $input->getArgument('vhost-path') . $vhost .
+					'/' . $input->getArgument('logfile-path') . '</error>');
 			}
 
 			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $historicalData);

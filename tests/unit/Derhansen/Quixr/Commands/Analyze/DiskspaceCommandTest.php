@@ -195,4 +195,22 @@ class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 		$actual = file_get_contents(vfsStream::url('var/www/quixr.json'));
 		$this->assertEquals(json_encode($expected), $actual);
 	}
+
+	/**
+	 * Test if the analyze command prints a warning if the vhost does not contain the given subfolder for logs
+	 *
+	 * @test
+	 */
+	public function analyzeCommandPrintsWarningAboutMissingDirectoryTest() {
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'document-root' => 'non-existing',
+				'target-file' => vfsStream::url('var/www/quixr.json')
+			)
+		);
+		$this->assertRegExp('/Directory is missing:/', $this->commandTester->getDisplay());
+	}
+
 }

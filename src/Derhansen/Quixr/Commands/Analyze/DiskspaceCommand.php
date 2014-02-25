@@ -61,7 +61,7 @@ class DiskspaceCommand extends Command {
 				$newData = $this->getQuixr()->getDiskspaceanalyzer()->analyzeDiskspace($documentRoot, $currentDiskspace);
 				$analysisData[$vhost] = $newData[$vhost];
 			} else {
-				// @todo print error about missing directory
+				$output->writeln('<error>Directory is missing: ' . $documentRoot . '</error>');
 			}
 
 			$this->getQuixr()->getFilesystem()->writeDataAsJSON($targetFile, $analysisData);

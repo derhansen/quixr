@@ -255,4 +255,22 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame($expected, $actual);
 	}
 
+	/**
+	 * Test if the analyze command prints a warning if the vhost does not contain the given subfolder for logs
+	 *
+	 * @test
+	 */
+	public function analyzeCommandPrintsWarningAboutMissingDirectoryTest() {
+		$this->commandTester->execute(
+			array(
+				'command' => $this->command->getName(),
+				'vhost-path' => vfsStream::url('var/www/'),
+				'logfile-path' => 'non-existing',
+				'logfile' => 'access.log',
+				'target-file' => vfsStream::url('var/www/quixr.json')
+			)
+		);
+		$this->assertRegExp('/Directory is missing:/', $this->commandTester->getDisplay());
+	}
+
 }
