@@ -124,16 +124,6 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @test
-	 * @expectedException \Derhansen\Quixr\Exceptions\AnalyzeLogfileException
-	 * @return void
-	 */
-	public function analyzeLogfileReturnsExceptionIfLogFormatIsWrong() {
-		$vhostData = $this->getDefaultVhostData();
-		$this->loganalyzer->analyzeLogfile(__DIR__ . '/../Fixtures/Logfiles/common.log', $vhostData);
-	}
-
-	/**
-	 * @test
 	 * @return void
 	 */
 	public function analyzeLogfileReturnsExpectedTrafficDataForGivenCommonLogfileWithNoHistoricalData() {

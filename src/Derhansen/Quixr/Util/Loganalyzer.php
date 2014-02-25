@@ -74,7 +74,7 @@ class Loganalyzer {
 					$vhostData[$vhostname]['quixr']['traffic_lastlinehash'] = md5($rawline);
 				}
 			} catch(\Exception $e) {
-				throw new AnalyzeLogfileException($e->getMessage(), $e->getCode(), $e);
+				// Ignore parsing errors for lines in logfile
 			}
 		}
 
