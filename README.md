@@ -27,6 +27,7 @@ In order to use Quixr the following requirements must be met
 * PHP 5.3 or higher installed on the server
 * All Apache2 virtual hosts must be inside the same directory (e.g. `/var/www/`)
 * Logfiles for each virtual host must be located inside a subfolder for each virtual host (e.g. `/var/www/vhost1/logfiles`)
+* Document root for each virtual host must be located inside a subfolder for each virtual host (e.g. `/var/www/vhost1/htdocs`)
 
 ##Traffic analysis
 
