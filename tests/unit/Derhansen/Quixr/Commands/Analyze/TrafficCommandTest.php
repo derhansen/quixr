@@ -270,7 +270,7 @@ class TrafficCommandTest extends \PHPUnit_Framework_TestCase {
 				'target-file' => vfsStream::url('var/www/quixr.json')
 			)
 		);
-		$this->assertRegExp('/Directory is missing:/', $this->commandTester->getDisplay());
+		$this->assertRegExp('/Logfile not found in path:/', $this->commandTester->getDisplay());
 	}
 
 }
