@@ -68,7 +68,7 @@ class TrafficCommand extends Command {
 				$newData = $this->getQuixr()->getLoganalyzer()->analyzeLogfile($logfile, $currentTraffic);
 				$historicalData[$vhost] = $newData[$vhost];
 			} else {
-				$output->writeln('<error>Directory is missing: ' . $input->getArgument('vhost-path') . $vhost .
+				$output->writeln('<error>Logfile not found in path: ' . $input->getArgument('vhost-path') . $vhost .
 					'/' . $input->getArgument('logfile-path') . '</error>');
 			}
 
