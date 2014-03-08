@@ -11,6 +11,7 @@ $app = new Application('Quixr', '@package_version@');
 $app->addCommands(array(
 	new Derhansen\Quixr\Commands\Analyze\TrafficCommand(),
 	new Derhansen\Quixr\Commands\Analyze\DiskspaceCommand(),
-	new Derhansen\Quixr\Commands\UpdateCommand()
+	new Derhansen\Quixr\Commands\UpdateCommand(),
+	new Derhansen\Quixr\Commands\CleanupCommand()
 ));
 $app->run();
