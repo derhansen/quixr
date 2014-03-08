@@ -6,6 +6,9 @@ use Derhansen\Quixr\Quixr;
 use Derhansen\Quixr\Console\Application;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 abstract class Command extends BaseCommand {
 
 	/**

@@ -4,6 +4,9 @@ namespace Derhansen\Quixr\Util;
 
 use Derhansen\Quixr\Exceptions\NoValidJSONException;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class Filesystem {
 
 	/**

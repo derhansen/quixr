@@ -7,6 +7,9 @@ use Derhansen\Quixr\Util\Diskspaceanalyzer;
 use Derhansen\Quixr\Util\Filesystem;
 use Derhansen\Quixr\Util\VhostData;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class Quixr {
 
 	/**

@@ -7,6 +7,9 @@ use Derhansen\Quixr\Quixr;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class Application extends BaseApplication {
 
 	/**

@@ -5,6 +5,9 @@ namespace Derhansen\Quixr\Util;
 use Kassner\LogParser\LogParser;
 use Derhansen\Quixr\Exceptions\AnalyzeLogfileException;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class Loganalyzer {
 
 	/**

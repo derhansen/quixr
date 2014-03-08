@@ -2,6 +2,9 @@
 
 namespace Derhansen\Quixr\Util;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class Logformat {
 
 	/**

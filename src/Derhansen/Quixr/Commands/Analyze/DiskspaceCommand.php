@@ -8,6 +8,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Derhansen\Quixr\Util\Returncodes;
 use Derhansen\Quixr\Commands\Command;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class DiskspaceCommand extends Command {
 
 	/**

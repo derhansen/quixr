@@ -9,6 +9,9 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * @author Torben Hansen <derhansen@gmail.com>
+ */
 class UpdateCommand extends Command {
 
 	/**
