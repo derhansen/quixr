@@ -106,7 +106,7 @@ class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(Returncodes::TARGET_FILE_NOT_WRITEABLE, $this->commandTester->getStatusCode());
 	}
 
- 	/**
+	/**
 	 * Test if command executes successfully
 	 *
 	 * @test

@@ -60,8 +60,11 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 * @return void
 	 */
-	public function setHandleToOffsetWithMissingHandleTest() {
-		$this->assertEquals(NULL, $this->loganalyzer->setHandleToOffset(NULL, NULL, NULL));
+	public function setHandleToOffsetWithMissingParametersTest() {
+		$file = vfsStream::url('var/logfile.log');
+		file_put_contents($file, 'line1');
+		$handle = fopen($file, 'r');
+		$this->assertEquals($handle, $this->loganalyzer->setHandleToOffset($handle, NULL, NULL));
 	}
 
 	/**
@@ -71,7 +74,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	public function setHandleToOffsetWithoutOffsetAndComparehashTest() {
 		$file = vfsStream::url('var/logfile.log');
 		file_put_contents($file, 'line1');
-		$handle = fopen(vfsStream::url('var/logfile.log'), 'r');
+		$handle = fopen($file, 'r');
 		$this->assertEquals($handle, $this->loganalyzer->setHandleToOffset($handle, NULL, NULL));
 		fclose($handle);
 	}
