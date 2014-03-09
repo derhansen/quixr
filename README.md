@@ -68,13 +68,54 @@ Usage:
 Arguments:
  vhost-path         Path to virtial hosts (e.g. /var/www/)
  document-root      Path to document root of each virtual host (e.g. htdocs)
- target-file        Target JSON file for analysis results (e.g. quixr.json
+ target-file        Target JSON file for analysis results (e.g. quixr.json)
 ```
 
 ###Example
 
 ``` sh
 $ quixr analyze:diskspace /var/www/ htdocs /some/path/quixr.json
+```
+
+##Cleanup
+
+Removes deleted vhosts from the given target file.
+
+###Usage
+
+```
+Usage:
+ cleanup vhost-path target-file
+
+Arguments:
+ vhost-path         Path to virtial hosts (e.g. /var/www/)
+ target-file        Target JSON file for analysis results (e.g. quixr.json)
+```
+
+###Example
+
+``` sh
+$ quixr cleanup /var/www/ /some/path/quixr.json
+```
+
+##Update
+
+Updates quixr to the latest version
+
+###Usage
+
+```
+Usage:
+ update
+
+Arguments:
+ major              Allow major version update
+```
+
+###Example
+
+``` sh
+$ quixr update
 ```
 
 ##License
