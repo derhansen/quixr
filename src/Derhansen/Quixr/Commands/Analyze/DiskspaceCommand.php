@@ -24,7 +24,7 @@ class DiskspaceCommand extends Command {
 			->setDescription('Analyzes diskspace for all virtual hosts in a given path')
 			->addArgument('vhost-path', InputArgument::REQUIRED, 'Path to virtial hosts (e.g. /var/www/)')
 			->addArgument('document-root', InputArgument::REQUIRED, 'Path to document root of each virtual host (e.g. htdocs)')
-			->addArgument('target-file', InputArgument::REQUIRED, 'Target JSON file for analysis results (e.g. quixr.json')
+			->addArgument('target-file', InputArgument::REQUIRED, 'Target JSON file for analysis results (e.g. quixr.json)')
 		;
 	}
 

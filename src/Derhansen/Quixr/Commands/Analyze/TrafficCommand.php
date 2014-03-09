@@ -25,7 +25,7 @@ class TrafficCommand extends Command {
 			->addArgument('vhost-path', InputArgument::REQUIRED, 'Path to virtial hosts (e.g. /var/www/)')
 			->addArgument('logfile-path', InputArgument::REQUIRED, 'Path to logfiles of each virtual host (e.g. logs)')
 			->addArgument('logfile', InputArgument::REQUIRED, 'Logfile (e.g. access.log)')
-			->addArgument('target-file', InputArgument::REQUIRED, 'Target JSON file for analysis results (e.g. quixr.json')
+			->addArgument('target-file', InputArgument::REQUIRED, 'Target JSON file for analysis results (e.g. quixr.json)')
 			->addArgument('logformat', InputArgument::OPTIONAL, 'Apache2 Logfile format. Allowed values: common, combined', 'combined')
 		;
 	}
