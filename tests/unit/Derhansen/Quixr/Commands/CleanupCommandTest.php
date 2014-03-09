@@ -2,14 +2,14 @@
 
 namespace tests\unit\Derhansen\Quixr\Commands;
 
+require_once __DIR__ . '/../../../bootstrap.php';
+
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use Derhansen\Quixr\Console\Application;
 use Derhansen\Quixr\Commands\CleanupCommand;
 use Derhansen\Quixr\Util\Returncodes;
 use org\bovigo\vfs\vfsStream;
-
-require_once __DIR__ . '/../../../bootstrap.php';
 
 class CleanupCommandTest extends \PHPUnit_Framework_TestCase {
 

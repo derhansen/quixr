@@ -1,13 +1,15 @@
 <?php
 
+namespace tests\unit\Derhansen\Quixr\Commands\Analyze;
+
+require_once __DIR__ . '/../../../../bootstrap.php';
+
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use Derhansen\Quixr\Console\Application;
 use Derhansen\Quixr\Commands\Analyze\DiskspaceCommand;
 use Derhansen\Quixr\Util\Returncodes;
 use org\bovigo\vfs\vfsStream;
-
-require_once __DIR__ . '/../../../../bootstrap.php';
 
 class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 

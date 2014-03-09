@@ -92,7 +92,7 @@ class Loganalyzer {
 	 * @param resource $handle
 	 * @param int $offset
 	 * @param string $comparehash
-	 * @return resource
+	 * @return resource|NULL
 	 */
 	public function setHandleToOffset($handle, $offset, $comparehash) {
 		if ($offset > -1 && $comparehash != '') {

@@ -104,7 +104,7 @@ class LoganalyzerTest extends \PHPUnit_Framework_TestCase {
 	 * @test
 	 * @return void
 	 */
-	public function SetHandleToOffsetWithWrongOffsetTest() {
+	public function setHandleToOffsetWithWrongOffsetTest() {
 		$file = vfsStream::url('var/logfile.log');
 		file_put_contents($file, 'line1' . PHP_EOL . 'line2' . PHP_EOL . 'line3' . PHP_EOL . 'line4' . PHP_EOL);
 		$handle = fopen(vfsStream::url('var/logfile.log'), 'r');
