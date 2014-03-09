@@ -13,6 +13,7 @@ Quixr is still under **development**, so some major features are missing and exp
 ##Todos
 
 * Quota reporting
+* Traffic/Diskspace output on command line
 * Webtool for data visualization
 
 ##Who should use Quixr?
