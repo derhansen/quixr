@@ -35,7 +35,7 @@ class CleanupCommand extends Command {
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$dirs = $this->getQuixr()->getFilesystem()->getSubdirectories($input->getArgument('vhost-path'));
-		if ($dirs === FALSE | count($dirs) === 0) {
+		if (count($dirs) === 0) {
 			$output->writeln('Given vhost-path not found or empty');
 			return Returncodes::PATH_NOT_FOUND_OR_EMPTY;
 		}

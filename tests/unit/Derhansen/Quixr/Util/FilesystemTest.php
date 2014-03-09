@@ -25,7 +25,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfNoPathGivenTest() {
-		$this->assertFalse($this->filesysten->getSubdirectories(NULL));
+		$this->assertEquals(array(), $this->filesysten->getSubdirectories(NULL));
 	}
 
 	/**
@@ -33,7 +33,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfEmptyPathGivenTest() {
-		$this->assertFalse($this->filesysten->getSubdirectories(''));
+		$this->assertEquals(array(), $this->filesysten->getSubdirectories(''));
 	}
 
 	/**
@@ -41,7 +41,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 	 * @return void
 	 */
 	public function getSubdirectoriesReturnsFalseIfPathDoesNotEndWithSlashTest() {
-		$this->assertFalse($this->filesysten->getSubdirectories('/var/www'));
+		$this->assertEquals(array(), $this->filesysten->getSubdirectories('/var/www'));
 	}
 
 	/**
@@ -50,7 +50,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function getSubdirectoriesReturnsFalseIfNonExistingPathGivenTest() {
 		vfsStream::setup('var');
-		$this->assertFalse($this->filesysten->getSubdirectories(vfsStream::url('var/www/')));
+		$this->assertEquals(array(), $this->filesysten->getSubdirectories(vfsStream::url('var/www/')));
 	}
 
 	/**

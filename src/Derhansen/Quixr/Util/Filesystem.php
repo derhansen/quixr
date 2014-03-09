@@ -13,7 +13,7 @@ class Filesystem {
 	 * Returns an array of subdirectories for the given path
 	 *
 	 * @param string $path The path
-	 * @return array|bool
+	 * @return array
 	 */
 	public function getSubdirectories($path) {
 		if (is_dir($path) && substr($path, -1) == '/') {
@@ -30,7 +30,7 @@ class Filesystem {
 
 			return $found;
 		} else {
-			return FALSE;
+			return array();
 		}
 	}
 
