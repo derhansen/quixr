@@ -2,8 +2,6 @@
 
 namespace tests\unit\Derhansen\Quixr\Commands\Analyze;
 
-require_once __DIR__ . '/../../../../bootstrap.php';
-
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use Derhansen\Quixr\Console\Application;
@@ -109,6 +107,8 @@ class DiskspaceCommandTest extends \PHPUnit_Framework_TestCase {
 	}
 
  	/**
+	 * Test if command executes successfully
+	 *
 	 * @test
 	 */
 	public function commandExecutesSuccessfullTest() {
